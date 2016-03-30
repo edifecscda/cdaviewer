@@ -1,0 +1,203 @@
+<div class="panel panel-default">
+<div class="bb-custom-wrapper">
+	<div id="bb-bookblock" class="bb-bookblock bb-vertical" bookblock>
+            <div class="bb-item">
+                <div class="bb-title">
+                    <span class="navigation">
+                        <!-- <span class="nav-toggle page-control"><i class="fa fa-bars"></i></span>-->
+                        <!--<span class="page-control bb-nav-prev"><i class="fa fa-angle-left"></i></span>
+                        <span class="page-control bb-nav-next"><i class="fa fa-angle-right"></i></span>
+                        <span class="page-control bb-nav-last"><i class="fa fa-angle-double-right"></i></span>-->
+                    </span>
+                    <h2>{{testObject.patient}}</h2>
+                   <!--   <span class="navigation" style="text-align: right">
+                        <span class="page-control bb-nav-first"><i class="fa fa-chevron-left"></i></span>
+                    </span>-->
+                </div>
+                 <nav class="nav-rect">
+                   <!--  <span class="prev bb-nav-prev">
+                        <i class="fa fa-angle-left"></i>
+                    </span>-->
+                    <span class="next bb-nav-next">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </nav>
+                <div class="bb-renderContent">
+                    <div class="row">
+                        <div class="left col-sm-6">
+                            <h3>Patient Info</h3>
+                            <div class="content-wrapper">
+                            <ul>
+                            	<li class="header">Date Of Birth</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.DOB}}</span>
+                            		</li>
+                            	</ul>
+                            	<li class="header">Sex</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.sex}}</span>
+                            		</li>
+                            	</ul>
+                            	<li class="header">Contact Info</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.contactInfo}}</span>
+                            		</li>
+                            	</ul>
+                            	<li class="header">Patient ID</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.patientID}}</span>
+                            		</li>
+                            	</ul>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>Document Info</h3>
+                            <div class="content-wrapper">
+                            <ul>
+                            	<li class="header">Document ID</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.documentID}}</span>
+                            		</li>
+                            	</ul>
+                            	<li class="header">Creation Date</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.documentCreated}}</span>
+                            		</li>
+                            	</ul>
+                            	<li class="header">Author</li>
+                            	<ul>
+                            		<li class="paragraph-label"><span>{{testObject.author}}</span>
+                            		</li>
+                            	</ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            
+            
+            <div class="bb-item" ng-repeat="item in testObject.items">
+                <div class="bb-title">
+                    <span class="navigation">
+                       <!--  <span class="nav-toggle page-control"><i class="fa fa-bars"></i></span>-->
+                        <!--<span class="page-control bb-nav-prev"><i class="fa fa-angle-left"></i></span>
+                        <span class="page-control bb-nav-next"><i class="fa fa-angle-right"></i></span>
+                        <span class="page-control bb-nav-last"><i class="fa fa-angle-double-right"></i></span>-->
+                    </span>
+                    <h2>{{testObject.patient}}</h2>
+                    <!-- <span class="navigation" style="text-align: right">
+                        <span class="page-control bb-nav-first"><i class="fa fa-chevron-left"></i></span>
+                    </span> -->
+                </div>
+                <nav class="nav-rect">
+                    <span class="prev bb-nav-prev">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                    <span ng-hide="$last" class="next bb-nav-next">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </nav>
+                <div class="bb-renderContent">
+                    
+                    <h3>{{item.title}}</h3>
+                    <!-- <div ng-repeat="content in item.text.content"><h4>{{content['#text']}}</h4>
+                    </div>-->
+                    <div class="content-wrapper">
+	                    <h5>{{item.text}}</h5>
+	                    <!-- <ul>
+	                    	<li class="paragraph-label" ng-repeat="content in item.content"><span>{{content}}</span></li>
+                        </ul>-->
+	                    
+	                     <ul ng-repeat="listObject in item.list">
+                           	<li class="header" ng-if="listObject.caption">{{listObject.caption}}</li>
+                            	<ul>
+                            		<li class="paragraph-label" ng-repeat="listitem in listObject.listitem"><span>{{listitem}}</span>
+                            		</li>
+                            	</ul>
+                          </ul>
+	                    
+	                    
+	                    <div ng-repeat="table in item.table">
+							<table border="1px" style="width:100%; margin-top:40px;">
+	                    		<thead style="background-color:#3BAFDA; color:#FFFFFF">
+	                    			<tr ng-repeat="tr in table.thead.tr">
+	                    				<th colspan="{{th.colspan}}" style="text-align: center;padding:5px;" ng-repeat="th in tr.th">{{th.text}}</th>
+	                    			</tr>
+	                    		</thead>
+	                    		<tbody>
+	                    			<tr ng-repeat="tr in table.tbody.tr">
+	                    				<td valign="top" style="width:25%; padding:5px;" ng-repeat="td in tr.td">
+	                    					<span>{{td.text}}</span>
+	                    					<span ng-show="td.link"><a  href="{{td.link.href}}">{{td.link.content}}</a></span>
+	                    					<ul ng-repeat="listitem in td.list">
+	                    						<li class="header" ng-show="listitem.caption !='' && (listitem.table !='' || listitem.content !='') ">{{listitem.caption}}</li>
+	                    						<ul style="padding-left:0px" ng-show="listitem.content !=''">
+                            						<li class="paragraph-label" ng-repeat="contentitem in listitem.content"><span>{{contentitem}}</span></li>
+                            					</ul>
+                            					<ul style="padding-left:0px" ng-show="listitem.table !=''">
+                            						<li class="paragraph-label" ng-repeat="tableitem in listitem.table">
+                            							<span>
+	                            							<table border="1px" style="width: 100%">
+		                    									<thead style="background-color:#3BAFDA; color:#FFFFFF">
+		                    										<tr ng-repeat="tr in tableitem.thead.tr">
+		                    											<th colspan="{{th.colspan}}" style="text-align: center;padding:5px;" ng-repeat="th in tr.th">{{th.text}}</th>
+		                    										</tr>
+		                    									</thead>
+		                    									<tbody>
+			                    									<tr ng-repeat="tr in tableitem.tbody.tr">
+			                    										<td style="padding:5px;" ng-repeat="td in tr.td">
+			                    											<span>{{td.text}}</span>
+			                    										</td>
+			                    									</tr>
+		                    									</tbody>
+		                    								</table>	
+                            							</span>
+                            						</li>
+                            					</ul>		
+	                    					</ul>
+	                    				</td>
+	                    			</tr>
+	                    		</tbody>
+	                    	</table>
+	                    </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="left col-sm-6">
+                            <h3>{{item.first.name}}</h3>
+                           <div class="content-wrapper">
+                            <ul>
+                            	<li class="header">Types:</li>
+                            	<ul>
+                            		<li class="paragraph-label" ng-repeat="type in item.first.types"><span>{{type}}</span>
+                            		</li>
+                            	</ul>
+                            </ul>
+                           </div>
+                        </div>
+                         <div class="left col-sm-6">
+                            <h3>{{item.second.name}}</h3>
+                           <div class="content-wrapper">
+                            <ul>
+                            	<li class="header">Types:</li>
+                            	<ul>
+                            		<li class="paragraph-label" ng-repeat="type in item.second.types"><span>{{type}}</span>
+                            		</li>
+                            	</ul>
+                            </ul>
+                           </div>
+                        </div>
+                        
+                    </div>-->
+                </div>
+            </div>
+    	</div>
+ </div>
+ 
+ <div class="scrubber">
+		<span class="dot selected"><b></b></span>
+		<span class="dot" ng-repeat="item in testObject.items"><b></b></span>
+	</div>
+ </div>

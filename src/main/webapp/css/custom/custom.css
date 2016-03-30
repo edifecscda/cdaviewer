@@ -1,0 +1,149 @@
+
+
+.fieldsHeaderGroup
+{
+	margin-top:40px;
+}
+
+.columnDiv
+{
+	/*text-align: center*/;
+	margin-top:10px;
+}
+
+.rowButton
+{
+	margin-right:10px;
+}
+
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+.errorMessage
+{
+	color: red;
+	display: none;
+}
+
+.errorField
+{
+	border-color: red;
+}
+
+.datePickerDiv,.centerTextDiv
+{
+	text-align: center;
+}
+
+.datePickerSlotDate
+{
+	background: #48E517 !important;
+    box-shadow: #48E517 0 1px 3px 0 inset;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+
+.datePickerCurrentScheduleDate
+{
+	background: #ff8040!important;
+    box-shadow: #ff00000 1px 3px 0 inset;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.datePickerSlotTime
+{
+	background: #90DE5C !important;
+}
+
+.datePickerCurrentScheduleTime
+{
+	background: #ff8000!important;
+}
+
+.row
+{
+	margin-top:20px;
+}
+
+.loginBtn
+{
+	margin-right: 20px;
+}
+
+/*
+	Styles for the report
+*/
+
+.h1center {
+  font-size: 12pt;
+  font-weight: bold;
+  text-align: center;
+  width: 80%;
+}
+
+.header_table{
+  border: 1pt inset #00008b;
+  width:100%;
+  font-size: 11px;
+  
+}
+
+.td_label{
+  font-weight: bold;
+  color: white;
+}
+
+.td_header_role_name{
+  width: 20%;
+  background-color: #3399ff;
+}
+
+.td_header_role_value{
+  width: 80%;
+  background-color: #ccccff;
+}
+
+.Bold{
+  font-weight: bold;
+}
+
+.Italics{
+  font-style: italic;
+}
+
+.Underline{
+  text-decoration:underline;
+}
+
+.homebutton
+{
+	width:100%;
+}
+
+.nopadding{
+	padding-right:0px !important;
+	padding-left:0px !important;
+}

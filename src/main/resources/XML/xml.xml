@@ -1,0 +1,1504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<cda:ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc">
+  <cda:realmCode code="US"/>
+  <cda:typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <cda:templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2014-06-09"/>
+  <cda:templateId root="2.16.840.1.113883.10.20.22.1.15"/>
+  <cda:id root="608a64c4-5b6b-46a4-820f-705754eccdfa"/>
+  <cda:code code="52521-2" codeSystem="2.16.840.1.113883.6.1" displayName="HC Payor Care Plan"/>
+  <cda:title>Overall Plan of Care - HC Payor</cda:title>
+  <cda:effectiveTime value="20140917110034-0600"/>
+  <cda:confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <cda:languageCode code="en-US"/>
+  <cda:setId root="BEFB0B33-D483-4E09-8C05-0E8F57176CA2"/>
+  <cda:versionNumber value="1"/>
+  <cda:recordTarget>
+    <cda:patientRole>
+      <cda:id root="2.16.840.1.113883.4.6.55555" extension="158530"/>
+      <cda:id root="2.16.840.1.113883.4.6.55555" extension="123456789"/>
+      <cda:addr use="HP">
+        <cda:streetAddressLine>1111 StreetName St. </cda:streetAddressLine>
+        <cda:city>Silver Spring</cda:city>
+        <cda:state>Maryland</cda:state>
+        <cda:postalCode>20901</cda:postalCode>
+        <cda:country>United States of America</cda:country>
+      </cda:addr>
+      <cda:telecom value="tel:+1(301)111-1111" use="HP"/>
+      <cda:patient>
+        <cda:name use="L">
+          <cda:given>Adam</cda:given>
+          <cda:family>Everyman</cda:family>
+        </cda:name>
+        <cda:administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male" codeSystemName="AdministrativeGender"/>
+        <cda:birthTime value="19630911"/>
+        <cda:maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus"/>
+        <cda:raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="OMB Standards for Race and Ethnicity"/>
+        <cda:ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="OMB Standards for Race and Ethnicity"/>
+        <cda:languageCommunication>
+          <cda:languageCode code="eng"/>
+          <cda:modeCode code="ESP" displayName="Expressed spoken" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+          <cda:proficiencyLevelCode code="E" displayName="Excellent" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency"/>
+        </cda:languageCommunication>
+      </cda:patient>
+    </cda:patientRole>
+  </cda:recordTarget>
+<cda:author>																		
+        <cda:time value="20140917110034"/>												
+        <cda:assignedAuthor>															
+            <cda:id extension="44444" root="2.16.840.1.113883.4.6.55555"/>					
+             <cda:code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered Nurse" codeSystemName="NUCC"/> 
+            <cda:addr use="WP">																
+                <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>			
+                <cda:city>Mid Lake</cda:city><cda:state>MI</cda:state><cda:postalCode>49735</cda:postalCode>	
+                <cda:country>US</cda:country>													
+            </cda:addr>
+            <cda:telecom value="tel:+1(301)222-2222" use="WP"/>								
+            <cda:assignedPerson>
+                <cda:name>
+                    <cda:given>Pamela</cda:given>												
+                    <cda:family>Care Manager</cda:family>										
+                    <cda:suffix>RN, CCM</cda:suffix>											
+                </cda:name>
+            </cda:assignedPerson>
+			 <cda:representedOrganization>
+                <cda:id extension="55555" root="2.16.840.1.113883.4.6"/>
+                <cda:name>HC Payor</cda:name>
+                <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+                <cda:addr use="WP">
+                    <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+                    <cda:city>Mid Lake</cda:city><cda:state>MI</cda:state><cda:postalCode>49735</cda:postalCode>
+                    <cda:country>US</cda:country>
+                </cda:addr>             
+            </cda:representedOrganization>
+        </cda:assignedAuthor>
+    </cda:author>
+    <cda:author>
+        <cda:time value="20140917110034"/>
+        <cda:assignedAuthor>
+            <!-- This is the id for the instance of the sw running at this organization's site -->
+            <cda:id extension="3.19" root="1.2.826.0.1.3680043.8.2160"/>
+            <cda:addr>
+                <cda:streetAddressLine>6200 Tennyson Parkway</cda:streetAddressLine>
+                <cda:city>Plano</cda:city>
+                <cda:state>TX</cda:state>
+                <cda:postalCode>75024</cda:postalCode>
+                <cda:country>US</cda:country> 
+            </cda:addr>
+            <cda:telecom value="tel:+1-(555)555-0000"/>
+            <cda:assignedAuthoringDevice>
+                <cda:manufacturerModelName>Jiva 6.0</cda:manufacturerModelName>
+                <cda:softwareName>Jiva</cda:softwareName>
+            </cda:assignedAuthoringDevice>
+            <cda:representedOrganization>
+                <!-- Their NPI number -->
+                <cda:id extension="55555" root="2.16.840.1.113883.4.6"/>
+                <cda:name>HC Payor</cda:name>
+                <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+                <cda:addr use="WP">
+                    <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+                    <cda:city>Mid Lake</cda:city><cda:state>MI</cda:state><cda:postalCode>49735</cda:postalCode>
+                    <cda:country>US</cda:country>
+                </cda:addr>             
+            </cda:representedOrganization>
+        </cda:assignedAuthor>
+    </cda:author>	
+  <cda:custodian>
+    <cda:assignedCustodian>
+      <cda:representedCustodianOrganization>
+        <cda:id extension="55555" root="2.16.840.1.113883.4.6"/>
+        <cda:name>HC Payor</cda:name>
+        <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+        <cda:addr use="WP">
+          <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+          <cda:city>Mid Lake</cda:city>
+          <cda:state>MI</cda:state>
+          <cda:postalCode>49735</cda:postalCode>
+          <cda:country>US</cda:country>
+        </cda:addr>
+      </cda:representedCustodianOrganization>
+    </cda:assignedCustodian>
+  </cda:custodian>
+  <cda:documentationOf>
+    <cda:serviceEvent classCode="ACT">
+      <cda:performer typeCode="PPRF">
+        <cda:time value="20140917160000-0500"/>
+        <cda:assignedEntity>
+          <cda:id root="1.2.826.0.1.3680043.8.2160.3.19" extension="system-id-here"/>
+          <cda:code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered Nurse" codeSystemName="NUCC"/>
+          <cda:addr use="WP">
+            <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+            <cda:city>Mid Lake</cda:city>
+            <cda:state>MI</cda:state>
+            <cda:postalCode>49735</cda:postalCode>
+            <cda:country>US</cda:country>
+          </cda:addr>
+          <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+          <cda:assignedPerson>
+            <cda:name>
+              <cda:given>Pamela</cda:given>
+              <cda:family>Care Manager</cda:family>
+              <cda:suffix>RN, CCM</cda:suffix>
+            </cda:name>
+          </cda:assignedPerson>
+        </cda:assignedEntity>
+      </cda:performer>
+    </cda:serviceEvent>
+  </cda:documentationOf>
+  <cda:component>
+    <cda:structuredBody>
+      <cda:component>
+        <cda:section>
+          <cda:templateId root="2.16.840.1.113883.10.20.22.2.18.2"/>
+          <cda:id root="F1E89DA5-8A09-42BC-A4AA-822DC2554E8B"/>
+          <cda:code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payer"/>
+          <cda:title>PAYOR INFORMATION</cda:title>
+          <cda:text>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>Payer</cda:th>
+                  <cda:th>ID</cda:th>
+                  <cda:th>Effective Date</cda:th>
+                  <cda:th>Coverage Group</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>HC Payor</cda:td>
+                  <cda:td>123456789</cda:td>
+                  <cda:td>01/01/2013</cda:td>
+                  <cda:td>Work Is Fun</cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+          </cda:text>
+        </cda:section>
+      </cda:component>
+      <cda:component>
+        <cda:section>
+          <cda:templateId root="1.2.826.0.1.3680043.8.2160.1.1.1.1.2.1"/>
+          <cda:id root="56620DA6-151A-4F4D-B9C6-77754FBC2C9A"/>
+          <cda:code code="TEMP-DiseaseMgmntCarePlan" displayName="Disease Management Care Plan" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" sdtc:valueSet="1.2.826.0.1.3680043.8.2160.1.1.1.1.5.6"/>
+          <cda:title>Disease Management Care Plan FOR ASTHMA</cda:title>
+          <cda:text>
+            <cda:table>
+              <cda:tbody ID="CP_Enrollment_1">
+                <cda:tr ID="CP_Enrollment_1_EpisodeType">
+                  <cda:td>Episode:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_EpisodeType_Value">Disease Management</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_ProgramType">
+                  <cda:td>Program:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_ProgramType_Value">ASTHMA</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_AccuityLevel">
+                  <cda:td>Acuity Level:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_AccuityLevel_Value">3</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_Date">
+                  <cda:td>Patient Enrollment Date:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_Date_Value">01/01/2014</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_Status">
+                  <cda:td>Patient Enrollment Status:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_Status_Value">Open</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_ReferralSource">
+                  <cda:td>Referral Source:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_ReferralSource_Value">Physician/Provider</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_StatusReason">
+                  <cda:td>Reason:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_StatusReason_Value">Meets Program Criteria</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_StatusEffectiveDate">
+                  <cda:td>Status Updated on:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_StatusEffectiveDate_Value">09/17/2014</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_AssignedTo">
+                  <cda:td>Assigned to:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_AssignedTo_Value">Care Manager, Pamela</cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+            <cda:br/>
+            <cda:br/>
+            <cda:content ID="CarePlan_1-1" styleCode="Bold">CARE PLAN ITEM #1</cda:content>
+            <cda:br/>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>PROBLEMS</cda:th>
+                  <cda:th>GOALS</cda:th>
+                  <cda:th>INTERVENTIONS</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>
+                    <cda:list>
+                      <cda:caption>Problem</cda:caption>
+                      <cda:item ID="CP_1_Problem_1">
+                        <cda:content>problem description: Member does not have an action plan for worsening  symptoms and/or complications related to asthma.</cda:content>
+                        <cda:content>date of onset: 09/16/2014</cda:content>
+                        <cda:content>problem status: Open</cda:content>
+                        <cda:content>problem assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_PriorGoals_1">
+                      <cda:caption>Prior Completed Goals</cda:caption>
+                      <cda:item ID="CP_1_PriorGoals_1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Goal_1">
+                      <cda:caption>Goal</cda:caption>
+                      <cda:item ID="CP_1_Goal_1-1">
+                        <cda:content>goal description: Member will understand/have an individualized action plan for worsening symptoms and/or complications related to asthma.</cda:content>
+                        <cda:content>date established: 09/16/2014</cda:content>
+                        <cda:content>goal assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedIntvs_1-1">
+                      <cda:caption>Completed Interventions</cda:caption>
+                      <cda:item ID="CP_1_CompletedIntvs_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedEvals_1-1">
+                      <cda:caption>Completed Evaluations</cda:caption>
+                      <cda:item ID="CP_1_CompletedEvals_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Review with the member how to contact health providers as needed to address issues and concerns regarding self-management</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td>09/23/2014</cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/23/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Encourage the member to share their asthma action plan with their caregiver/family for additional support/management of condition.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td>09/23/2014</cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/23/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Healthwise Educational material - Your Action Plan</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/17/2014</cda:td>
+                              <cda:td>09/24/2014</cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>No Activity</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Healthwise Educational material - Checking Peak Flow</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/17/2014</cda:td>
+                              <cda:td>09/24/2014</cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>No Activity</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+            <cda:content ID="CarePlan_1-1" styleCode="Bold">CARE PLAN ITEM #2</cda:content>
+            <cda:br/>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>PROBLEMS</cda:th>
+                  <cda:th>GOALS</cda:th>
+                  <cda:th>INTERVENTIONS</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>
+                    <cda:list>
+                      <cda:caption>Problem</cda:caption>
+                      <cda:item ID="CP_1_Problem_1">
+                        <cda:content>problem description: Member's asthma is not currently under control due to recurrent exacerbations requiring oral steroids</cda:content>
+                        <cda:content>date of onset: 09/16/2014</cda:content>
+                        <cda:content>problem status: Open</cda:content>
+                        <cda:content>problem assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_PriorGoals_1">
+                      <cda:caption>Prior Completed Goals</cda:caption>
+                      <cda:item ID="CP_1_PriorGoals_1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Goal_1">
+                      <cda:caption>Goal</cda:caption>
+                      <cda:item ID="CP_1_Goal_1-1">
+                        <cda:content>goal description: Member no longer has recurrent exacerbations due to uncontrolled asthma</cda:content>
+                        <cda:content>date established: 09/16/2014</cda:content>
+                        <cda:content>goal assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedIntvs_1-1">
+                      <cda:caption>Completed Interventions</cda:caption>
+                      <cda:item ID="CP_1_CompletedIntvs_1-1-1">
+                        <cda:content>description:Discuss with the member on how to treat acute asthma symptoms with medications, review their purpose, and method of administration.</cda:content>
+                        <cda:content>completed date:10/16/2014</cda:content>
+                        <cda:content>performer:Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedEvals_1-1">
+                      <cda:caption>Completed Evaluations</cda:caption>
+                      <cda:item ID="CP_1_CompletedEvals_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Review with the member how to contact health providers as needed to address issues and concerns regarding self-management</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>10/16/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Have the member explain their asthma triggers and keep a journal of triggers and events. Advise the member to share the journal with their provider.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>10/16/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Refer member to their health care provider for assessment and treatment of recurring exacerbations requiring oral steroids.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>10/16/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Instruct the member on how to use the peak flow zone system and how to find their personal best number. Discuss with the member the red, yellow, and green zone management.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>09/16/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>10/16/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+          </cda:text>
+          <cda:author>
+            <cda:time value="20140917160000-0500"/>
+            <cda:assignedAuthor>
+              <cda:id root="1.2.826.0.1.3680043.8.2160.3.19" extension="system-id-here"/>
+              <cda:code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered Nurse" codeSystemName="NUCC"/>
+              <cda:addr use="WP">
+                <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+                <cda:city>Mid Lake</cda:city>
+                <cda:state>MI</cda:state>
+                <cda:postalCode>49735</cda:postalCode>
+                <cda:country>US</cda:country>
+              </cda:addr>
+              <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+              <cda:assignedPerson>
+                <cda:name>
+                  <cda:given>Pamela</cda:given>
+                  <cda:family>Care Manager</cda:family>
+                  <cda:suffix>RN, CCM</cda:suffix>
+                </cda:name>
+              </cda:assignedPerson>
+            </cda:assignedAuthor>
+          </cda:author>
+        </cda:section>
+        <cda:section>
+          <cda:templateId root="1.2.826.0.1.3680043.8.2160.1.1.1.1.2.1"/>
+          <cda:id root="56620DA6-151A-4F4D-B9C6-77754FBC2C9A"/>
+          <cda:code code="TEMP-DiseaseMgmntCarePlan" displayName="Disease Management Care Plan" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" sdtc:valueSet="1.2.826.0.1.3680043.8.2160.1.1.1.1.5.6"/>
+          <cda:title>Disease Management Care Plan FOR DIABETES</cda:title>
+          <cda:text>
+            <cda:table>
+              <cda:tbody ID="CP_Enrollment_1">
+                <cda:tr ID="CP_Enrollment_1_EpisodeType">
+                  <cda:td>Episode:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_EpisodeType_Value">Disease Management</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_ProgramType">
+                  <cda:td>Program:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_ProgramType_Value">DIABETES</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_AccuityLevel">
+                  <cda:td>Acuity Level:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_AccuityLevel_Value">3</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_Date">
+                  <cda:td>Patient Enrollment Date:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_Date_Value">08/15/2014</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_Status">
+                  <cda:td>Patient Enrollment Status:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_Status_Value">Open</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_ReferralSource">
+                  <cda:td>Referral Source:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_ReferralSource_Value">Physician/Provider</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_StatusReason">
+                  <cda:td>Reason:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_StatusReason_Value">Meets Program Criteria</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_StatusEffectiveDate">
+                  <cda:td>Status Updated on:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_StatusEffectiveDate_Value">09/17/2014</cda:td>
+                </cda:tr>
+                <cda:tr ID="CP_Enrollment_1_AssignedTo">
+                  <cda:td>Assigned to:</cda:td>
+                  <cda:td ID="CP_Enrollment_1_AssignedTo_Value">Care Manager, Pamela</cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+            <cda:br/>
+            <cda:br/>
+            <cda:content ID="CarePlan_1-1" styleCode="Bold">CARE PLAN ITEM #1</cda:content>
+            <cda:br/>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>PROBLEMS</cda:th>
+                  <cda:th>GOALS</cda:th>
+                  <cda:th>INTERVENTIONS</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>
+                    <cda:list>
+                      <cda:caption>Problem</cda:caption>
+                      <cda:item ID="CP_1_Problem_1">
+                        <cda:content>problem description: Potential for prediabetic diagnosis progressing to diabetes</cda:content>
+                        <cda:content>date of onset: 01/01/2014</cda:content>
+                        <cda:content>problem status: Open</cda:content>
+                        <cda:content>problem assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_PriorGoals_1">
+                      <cda:caption>Prior Completed Goals</cda:caption>
+                      <cda:item ID="CP_1_PriorGoals_1-1">
+                        <cda:content>description:Review with the member lifestyle changes to improve their health status such as : diet, weight loss, and exercise</cda:content>
+                        <cda:content>completed date:02/01/2014</cda:content>
+                        <cda:content>performerCare Manager, Pamela</cda:content>
+                        <cda:content>goal assigned:Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Goal_1">
+                      <cda:caption>Goal</cda:caption>
+                      <cda:item ID="CP_1_Goal_1-1">
+                        <cda:content>goal description: Member gains knowledge and demonstrates ability to self-manage prediabetes; prediabetes remains controlled.</cda:content>
+                        <cda:content>date established: 01/01/2014</cda:content>
+                        <cda:content>goal assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedIntvs_1-1">
+                      <cda:caption>Completed Interventions</cda:caption>
+                      <cda:item ID="CP_1_CompletedIntvs_1-1-1">
+                        <cda:content>description:Provide member educational material on prediabetes and impact on life style</cda:content>
+                        <cda:content>completed date:02/01/2014</cda:content>
+                        <cda:content>performer:Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedEvals_1-1">
+                      <cda:caption>Completed Evaluations</cda:caption>
+                      <cda:item ID="CP_1_CompletedEvals_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Review with the member lifestyle changes to improve their health status such as : diet, weight loss, and exercise</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>01/01/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>02/01/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Review and Discuss with the member the risk factors of prediabetes and potential progression to developing type 2 diabetes</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>01/01/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>02/01/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+            <cda:content ID="CarePlan_1-1" styleCode="Bold">CARE PLAN ITEM #2</cda:content>
+            <cda:br/>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>PROBLEMS</cda:th>
+                  <cda:th>GOALS</cda:th>
+                  <cda:th>INTERVENTIONS</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>
+                    <cda:list>
+                      <cda:caption>Problem</cda:caption>
+                      <cda:item ID="CP_1_Problem_1">
+                        <cda:content>problem description: Member is likely to have complications related to poor diet adherence.</cda:content>
+                        <cda:content>date of onset: 12/23/2015</cda:content>
+                        <cda:content>problem status: Pend</cda:content>
+                        <cda:content>problem assigned: Page, Laurel</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_PriorGoals_1">
+                      <cda:caption>Prior Completed Goals</cda:caption>
+                      <cda:item ID="CP_1_PriorGoals_1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Goal_1">
+                      <cda:caption>Goal</cda:caption>
+                      <cda:item ID="CP_1_Goal_1-1">
+                        <cda:content>goal description: Member will demonstrate improved adherence to a diabetic diet as prescribed by provider</cda:content>
+                        <cda:content>date established: 01/06/2016</cda:content>
+                        <cda:content>goal assigned: </cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedIntvs_1-1">
+                      <cda:caption>Completed Interventions</cda:caption>
+                      <cda:item ID="CP_1_CompletedIntvs_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedEvals_1-1">
+                      <cda:caption>Completed Evaluations</cda:caption>
+                      <cda:item ID="CP_1_CompletedEvals_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Educate the member on community resources for diabetic teaching/nutrition such as: www.diabetes.org</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>12/23/2015</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Page, Laurel</cda:td>
+                              <cda:td>0</cda:td>
+                              <cda:td>-</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Pend</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Send member educational information on a Diabetic diet plan and how it relates to the management of the Diabetic disease process</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>12/23/2015</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Page, Laurel</cda:td>
+                              <cda:td>0</cda:td>
+                              <cda:td>-</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Pend</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Refer the member to a dietician specializing in Diabetes for evaluation and recommendations</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>12/23/2015</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Page, Laurel</cda:td>
+                              <cda:td>0</cda:td>
+                              <cda:td>-</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Pend</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Discuss with the member on self-management of diet to improve health and minimize Diabetic disease progression and/or symptoms</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>12/23/2015</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Page, Laurel</cda:td>
+                              <cda:td>0</cda:td>
+                              <cda:td>-</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Pend</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td></cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+            <cda:content ID="CarePlan_1-1" styleCode="Bold">CARE PLAN ITEM #3</cda:content>
+            <cda:br/>
+            <cda:table>
+              <cda:thead>
+                <cda:tr>
+                  <cda:th>PROBLEMS</cda:th>
+                  <cda:th>GOALS</cda:th>
+                  <cda:th>INTERVENTIONS</cda:th>
+                </cda:tr>
+              </cda:thead>
+              <cda:tbody>
+                <cda:tr>
+                  <cda:td>
+                    <cda:list>
+                      <cda:caption>Problem</cda:caption>
+                      <cda:item ID="CP_1_Problem_1">
+                        <cda:content>problem description: Member experiences hyperglycemia with decreased physical activity impacting their diabetic self-management plan.</cda:content>
+                        <cda:content>date of onset: 08/15/2014</cda:content>
+                        <cda:content>problem status: Open</cda:content>
+                        <cda:content>problem assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_PriorGoals_1">
+                      <cda:caption>Prior Completed Goals</cda:caption>
+                      <cda:item ID="CP_1_PriorGoals_1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Goal_1">
+                      <cda:caption>Goal</cda:caption>
+                      <cda:item ID="CP_1_Goal_1-1">
+                        <cda:content>goal description: Improve or maximize member's knowledge of diabetic self-management strategies as it relates to hyperglycemia and decreased physical activity.</cda:content>
+                        <cda:content>date established: 08/15/2014</cda:content>
+                        <cda:content>goal assigned: Care Manager, Pamela</cda:content>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedIntvs_1-1">
+                      <cda:caption>Completed Interventions</cda:caption>
+                      <cda:item ID="CP_1_CompletedIntvs_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_CompletedEvals_1-1">
+                      <cda:caption>Completed Evaluations</cda:caption>
+                      <cda:item ID="CP_1_CompletedEvals_1-1-1">
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                        <cda:content/>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                  <cda:td>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Send the member educational materials on physical activity and how it relates to self-management of diabetes. Include examples of an activity tracker if needed.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Evaluate the member's current medications. If indicated consult with a pharmacist for assistance in evaluating drug interactions/dosages that could result in hyperglycemia.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Encourage member to maintain an activity journal that includes tracking blood sugar levels prior and after different physical activities. Encourage member to share their results with their healthcare providers.</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Provide referrals to appropriate providers, including physical and occupational therapy for evaluation on exercise tolerance and development of an exercise plan</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Assist the member in obtaining an appointment to their health care provider for evaluation and recommendations on a self-management diabetic exercise program</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                    <cda:list ID="CP_1_Intervention_1-1">
+                      <cda:item ID="CP_1_Intv_1-1-1">
+                        <cda:content>Address the members specific questions/concerns and provide education on how strenuous physical activity can impact their blood sugar levels</cda:content>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Date Ordered</cda:th>
+                              <cda:th>Due Date</cda:th>
+                              <cda:th>Person Ordered by</cda:th>
+                              <cda:th>Frequency</cda:th>
+                              <cda:th>Priority</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>08/15/2014</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>Care Manager, Pamela</cda:td>
+                              <cda:td>7</cda:td>
+                              <cda:td>High</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                        <cda:table>
+                          <cda:thead>
+                            <cda:tr>
+                              <cda:th>Status</cda:th>
+                              <cda:th>Reason</cda:th>
+                              <cda:th>Complete by</cda:th>
+                            </cda:tr>
+                          </cda:thead>
+                          <cda:tbody>
+                            <cda:tr>
+                              <cda:td>Open</cda:td>
+                              <cda:td></cda:td>
+                              <cda:td>09/15/2014</cda:td>
+                            </cda:tr>
+                          </cda:tbody>
+                        </cda:table>
+                      </cda:item>
+                    </cda:list>
+                  </cda:td>
+                </cda:tr>
+              </cda:tbody>
+            </cda:table>
+          </cda:text>
+          <cda:author>
+            <cda:time value="20140917160000-0500"/>
+            <cda:assignedAuthor>
+              <cda:id root="1.2.826.0.1.3680043.8.2160.3.19" extension="system-id-here"/>
+              <cda:code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered Nurse" codeSystemName="NUCC"/>
+              <cda:addr use="WP">
+                <cda:streetAddressLine>123 Healthy Way Circle</cda:streetAddressLine>
+                <cda:city>Mid Lake</cda:city>
+                <cda:state>MI</cda:state>
+                <cda:postalCode>49735</cda:postalCode>
+                <cda:country>US</cda:country>
+              </cda:addr>
+              <cda:telecom value="tel:+1(978)732-2222" use="WP"/>
+              <cda:assignedPerson>
+                <cda:name>
+                  <cda:given>Pamela</cda:given>
+                  <cda:family>Care Manager</cda:family>
+                  <cda:suffix>RN, CCM</cda:suffix>
+                </cda:name>
+              </cda:assignedPerson>
+            </cda:assignedAuthor>
+          </cda:author>
+        </cda:section>
+      </cda:component>
+      <cda:component>
+        <cda:section nullFlavor="NI">
+          <cda:templateId root="2.16.840.1.113883.10.20.22.2.58"/>
+          <cda:id root="1AF27D85-8141-4874-B30A-C2FA0559BC30"/>
+          <cda:code code="75310-3" displayName="Health concerns document" codeSystem="2.16.840.1.113883.6.1"/>
+          <cda:title>Health Concerns Section</cda:title>
+          <cda:text>
+                        This would show Health Concerns encoded in machine readable entries and not referenced above in any Care Plan.  
+                    </cda:text>
+        </cda:section>
+      </cda:component>
+      <cda:component>
+        <cda:section nullFlavor="NI">
+          <cda:templateId root="2.16.840.1.113883.10.20.22.2.60"/>
+          <cda:id root="1DCAB12E-7B86-41A3-87B7-5F3737139038"/>
+          <cda:code code="61146-7" displayName="Goals" codeSystem="2.16.840.1.113883.6.1"/>
+          <cda:title>Goals Section</cda:title>
+          <cda:text>This would show Goals encoded in machine readable entries and not referenced above in any Care Plan.</cda:text>
+        </cda:section>
+      </cda:component>
+      <cda:component>
+        <cda:section nullFlavor="NI">
+          <cda:templateId root="2.16.840.1.113883.10.20.21.2.3" extension="2014-06-09"/>
+          <cda:id root="DCD59469-14D6-4EB4-9042-E6C3531B17EA"/>
+          <cda:code code="62387-6" displayName="Interventions Provided" codeSystem="2.16.840.1.113883.6.1"/>
+          <cda:title>Interventions Section</cda:title>
+          <cda:text>This would show Interventions encoded in machine readable entries and not referenced above in any Care Plan.</cda:text>
+        </cda:section>
+      </cda:component>
+      <cda:component>
+        <cda:section nullFlavor="NI">
+          <cda:templateId root="2.16.840.1.113883.10.20.22.2.61"/>
+          <cda:id root="DBA25255-B893-40AF-9E78-612C684E16D5"/>
+          <cda:code code="11383-7" displayName="Patient Problem Outcome" codeSystem="2.16.840.1.113883.6.1"/>
+          <cda:title>Health Status and Outcome Evaluation Section</cda:title>
+          <cda:text>This would show Status Assessments and Outcome Evaluations encoded in machine readable entries and not referenced above in any Care Plan.</cda:text>
+        </cda:section>
+      </cda:component>
+    </cda:structuredBody>
+  </cda:component>
+</cda:ClinicalDocument>

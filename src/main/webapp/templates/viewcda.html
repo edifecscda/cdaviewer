@@ -1,0 +1,62 @@
+<div class="panel panel-default">
+  		<div class="panel-heading">
+    		<h3 class="panel-title">Edifecs CDA Viewer</h3>
+  		</div>
+  		<div class="panel-body">
+    		
+    		<div ng-switch="showIFrame">
+	      		<div ng-switch-when="true">
+	      			<div ng-include="'templates/bookblock.html'"></div>
+	      				<div class="">
+			    		<button class="btn btn-primary pull-right" ng-click="backToList()"> Back >> </button>
+			    	</div>
+	      		</div>
+			</div>
+    	
+    	<form class="form-horizontal" ng-show="!showIFrame" role="form" enctype="multipart/form-data" style="position:relative" >
+        			
+        		<div class="form-group  addDataGroup">
+		      		<div class="row" style="margin-bottom:40px">
+		      			<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10" style="text-align: center;">
+		      				<h1>Welcome to Edifecs FHIR CDA-Viewer</h1>
+		      			</div>
+		      		</div>
+		      		
+		      		
+		      		<div class="row" style="margin-bottom:40px">
+		      			<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10">
+		      				This tool is created to demonstrate the rendering capabilities of <b>Edifecs C-CDA Viewer</b>. Please load your <b>existing C-CDA document</b> or any derived type of document so the system can display it in a nice, user-friendly fashion. If you do not have such a document handy, you are welcome to load the <b>Sample C-CDA document</b> by clicking on the corresponding button.
+
+		      			</div>
+		      		</div>
+		      		<div class="row" style="margin-bottom:40px">
+		      			<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10">
+							We appreciate any feedback at <a href="mailto:support@collablynk.com?Subject=C-CDA%20viewer%20feedback" target="_top">support@collablynk.com</a> and hope you enjoy our tool.
+		      			</div>
+		      		</div>
+			   </div>
+        			
+        			<div class="form-group">
+	        			<div class="col-md-offset-3 col-md-4 col-xs-offset-1 col-xs-10" style="margin-bottom: 10px;">
+	            				<div class="input-group">
+		               				 <input type="text" class="form-control" readonly  ng-model="uploader.queue[0].file.name">
+		               				 <span class="input-group-btn">
+			                    		 <span class="btn btn-primary btn-file">
+			                        			Browse for C-CDA Document <input type="file" name="ccdFile" nv-file-select uploader="uploader" ng-click="clear()">
+			                    		</span>
+		                			</span>
+		                			
+	        					</div>
+	        				</div>
+	        				<div class="col-md-offset-0 col-md-1 col-xs-offset-1 col-xs-10">
+    	    					<button class="btn btn-primary" ng-disabled="uploader.queue.length == 0" ng-click="upload()">Load C-CDA</button>
+        					</div>
+        					
+        					<div class="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-10">
+			      				<button class="btn btn-warning" ng-click="viewCDA()">Load Sample C-CDA</button>
+			      			</div>
+        				</div>
+        				
+    			</form>
+		</div>
+	</div>

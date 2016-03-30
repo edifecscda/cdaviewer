@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+
+<!-- NOTE: 
+    
+    Written as a sketch document for the BCBSA project
+    
+    This is a clinical care plan that is developed by the PCP at the PCMH.
+-->
+<!--  
+     
+     This is a Care Plan document is built using templates designs defined in C-CDA R2.0 
+     1 - Provide patient/member name and basic demographics
+     2 - Provide name and contact information for Care Plan author(s)
+     3 - Provide a value set option to identify patient status or enrollment in a care plan or DM plan
+     6 - Provide a way (value set option) to categorize the type or care plan: clinical, disease management, case management or patient-designed
+     7 - Provide a value set option to identify the specific type of care plan
+     8 - Provide an option for a name and description of the care plan
+     9 - Provide an option to capture the expected start and stop date for the care plan
+     10 - Provide for linkages between entries
+     12- Provide a way to be clear on the date, time and identification of each specific care plan, to support reconciliation and managing care plans from multiple sources, at different creation times.
+     
+     Additionally, this samples includes some "sample" content adapted from a care plan provided on 1/26/2015 to show the use of the available C-CDA R2.0 entries for the 
+     Health Concern, Goal, and Intervention sections.
+-->
+
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:hl7-org:v3 ../../../../../05%20Professional/01%20HL7/000%20CDA%20R2%20Extensions/20150602%20CDA_SDTC/CDA_SDTC/infrastructure/cda/CDA_SDTC.xsd"
+    xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc">
+    <realmCode code="US"/>
+    <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+    <!-- US Realm Header V2 TemplateID -->
+    <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2014-06-09"/>
+    <!-- Discharge Summary Template ID -->
+    <templateId root="2.16.840.1.113883.10.20.22.1.8" extension="2015-08-01"/>
+
+    <!-- Globally unique identifier for the document -->
+    <id root="E62C5C80-A48E-430E-9E58-AC254CFAD6A5"/>
+
+    <code code="59258-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+        displayName="Emergency Department Summary"/>
+    <title>Hometown Hospital Emergency Department Visit Summary</title>
+    <effectiveTime value="20140916190000-0500"/>
+    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+    <languageCode code="en-US"/>
+
+    <!-- Set ID and version number -->
+    <setId root="AA17F4C7-9366-4DB5-B30B-540BF7CDFE36"/>
+    <versionNumber value="1"/>
+
+    <!-- ***Requirement Id: 1 -->
+    <!-- Record target holds the basic patient demographics -->
+    <recordTarget>
+        <!-- The patient role holds all relevant ID's for the patient 
+             e.g. MRN @ PCMH -->
+        <patientRole>
+            <id root="BFFD5824-5A11-4ED4-B284-6BA77AF6C382" extension="20140916190000-PatientTest"/>
+            <!-- Could have other id's here granted by other assigning authorities -->
+            <!-- Should show the root+ext for ED Organization and the id used by ED Org for the pat's MRN in the ext-->
+            <id root="2.16.840.1.113883.4.6.654321" extension="9876543"/>
+            <addr use="HP">
+                <streetAddressLine>1111 StreetName St.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1(301)111-1111" use="HP"/>
+            <telecom value="mailto://adam12345@gmail.com" use="WP"/>
+            <patient>
+                <name use="L"><given>John</given><family>Everyman</family></name>
+                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"
+                    displayName="Male" codeSystemName="AdministrativeGender"/>
+                <birthTime value="19630911"/>
+                <maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2"
+                    codeSystemName="MaritalStatus"/>
+                <raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238"
+                    codeSystemName="OMB Standards for Race and Ethnicity"/>
+                <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino"
+                    codeSystem="2.16.840.1.113883.6.238"
+                    codeSystemName="OMB Standards for Race and Ethnicity"/>
+                <languageCommunication>
+                    <languageCode code="en"/>
+                    <modeCode code="ESP" displayName="Expressed spoken"
+                        codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+                    <proficiencyLevelCode code="E" displayName="Excellent"
+                        codeSystem="2.16.840.1.113883.5.61"
+                        codeSystemName="LanguageAbilityProficiency"/>
+                </languageCommunication>
+            </patient>
+            <!-- Patient center medical home is represented in the scoping organization 
+                 for the patient. -->
+            <providerOrganization>
+                <id extension="9999999" root="2.16.840.1.113883.4.6"/>
+                <name>Wood River Health Services</name>
+                <telecom value="tel:+1(301)222-2000" use="WP"/>
+                <addr use="WP">
+                    <streetAddressLine>2222 StreetName St.</streetAddressLine>
+                    <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                    <country>US</country>
+                </addr>
+            </providerOrganization>
+        </patientRole>
+    </recordTarget>
+    <!-- ***END Requirement Id: 1 -->
+
+    <!-- ***Requirement Id: 2 -->
+    <author>
+        <time value="20140916190000-0500"/>
+        <assignedAuthor>
+            <id root="ED93D9A5-3152-4D58-86F8-F44A4476286B" extension="DocumentAuthor1"/>
+            <id extension="22222" root="2.16.840.1.113883.4.6"/>
+            <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101"
+                displayName="Adult Medicine" codeSystemName="NUCC"/>
+            <addr use="WP">
+                <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1(301)444-1201" use="WP"/>
+            <assignedPerson>
+                <name>
+                    <given>Eric</given>
+                    <given>E</given>
+                    <family>Mergency</family>
+                    <suffix>MD</suffix>
+                </name>
+            </assignedPerson>
+        </assignedAuthor>
+    </author>
+
+    <!-- Presently the HL7 Data Provenance DSTU establishes a distinction between systems that author new information about a patient 
+         and systems that merely assemble existing information.  The later are considered data "assemblers" and are recorded as participants, not Authors of the document.
+         The Data Provenance DSTU has had low adoption and currently there is not clear consensus on how to represent the system involved in assembling the information 
+         shared in a CDA document.
+    -->
+    <author>
+        <time value="20140916190000-0500"/>
+        <assignedAuthor>
+            <!-- This is the id for the instance of the sw running at this organization's site -->
+            <id extension="3.19" root="1.2.826.0.1.3680043.8.2160"/>
+            <addr>
+                <streetAddressLine>6200 Tennyson Parkway</streetAddressLine>
+                <city>Arlington</city>
+                <state>MA</state>
+                <postalCode>02123</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1-(617)967-1234"/>
+            <assignedAuthoringDevice>
+                <manufacturerModelName>Open EMR</manufacturerModelName>
+                <softwareName>EMR v4.0</softwareName>
+            </assignedAuthoringDevice>
+            <representedOrganization>
+                <!-- This id identifies the entity within the application. It is the "internal id" -->
+                <id root="BFFD5824-5A11-4ED4-B284-6BA77AF6C382" extension="RepresentedOrganization"/>
+                <!-- This is an external id. The root identifies the context in which the extention has meaning. -->
+                <id extension="654321" root="2.16.840.1.113883.4.6"/>
+                <name>Hometown Hospital Group</name>
+                <telecom value="tel:+1(301)444-1200" use="WP"/>
+                <addr use="WP">
+                    <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                    <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                    <country>US</country>
+                </addr>
+            </representedOrganization>
+        </assignedAuthor>
+    </author>
+    <!-- END Requirement Id: 2 -->
+
+    <!-- NOTE: One possible use case where data enterer might be different is if the physician's
+               assistant enters the care plan information into the system after the physician 
+               writes it down elsewhere. -->
+    <!--<dataEnterer>
+        <assignedEntity>
+            <id root="CC077F00-65B6-4B29-BEAB-69DB3B1F919F" extension="DataEnterer"/>
+            <id extension="33333" root="2.16.840.1.113883.4.6"/>
+            <code code="364SA2200X" displayName="Adult Health" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC"/>
+            <addr use="WP">
+                <streetAddressLine>3333 StreetName St.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1(301)333-3333" use="WP"/>
+            <assignedPerson>
+                <name>
+                    <given>Patricia</given>
+                    <family>Primary</family>
+                </name>
+            </assignedPerson>
+        </assignedEntity>
+    </dataEnterer>-->
+
+
+
+    <!-- For the  -->
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <!-- This id identifies the entity within the application. It is the "internal id" -->
+                <id root="BFFD5824-5A11-4ED4-B284-6BA77AF6C382" extension="Custodian"/>
+                <!-- This is an external id. The root identifies the context in which the extention has meaning. -->
+                <id extension="654321" root="2.16.840.1.113883.4.6"/>
+                <name>Hometown Hospital Group</name>
+                <telecom value="tel:+1(301)444-1200" use="WP"/>
+                <addr use="WP">
+                    <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                    <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                    <country>US</country>
+                </addr>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+
+    <!-- 
+    If the plan is intended to be shared with someone, list them here. This document is intended for the patient and Nelly Nutritionist.
+    -->
+    <informationRecipient>
+        <intendedRecipient>
+            <id root="F4E6CAF7-BE46-4AAD-9FC0-0FE5230E4EC2" extension="InformationRecipient"/>
+            <id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+            <addr use="HP">
+                <streetAddressLine>1111 StreetName St.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+            <telecom value="tel:+1(301)111-1111" use="HP"/>
+            <informationRecipient>
+                <name><given>Adam</given><family>Everyman</family></name>
+            </informationRecipient>
+        </intendedRecipient>
+    </informationRecipient>
+    <informationRecipient>
+        <intendedRecipient>
+            <id extension="22222" root="2.16.840.1.113883.4.6"/>
+            <addr use="WP">
+                <streetAddressLine>2222 StreetName St.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1(301)222-2222" use="WP"/>
+            <telecom value="fax:+1(301)222-2100" use="WP"/>
+            <telecom value="mailto://PPrimaryMD@WRHS.org" use="WP"/>
+            <informationRecipient>
+                <name>
+                    <given>Patricia</given>
+                    <family>Primary</family>
+                    <suffix>MD</suffix>
+                </name>
+            </informationRecipient>
+            <receivedOrganization>
+                <id extension="9999999" root="2.16.840.1.113883.4.6"/>
+                <name>Wood River Health Services</name>
+                <telecom value="tel:+1(301)222-2000" use="WP"/>
+                <addr use="WP">
+                    <streetAddressLine>2222 StreetName St.</streetAddressLine>
+                    <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                    <country>US</country>
+                </addr>
+            </receivedOrganization>
+        </intendedRecipient>
+    </informationRecipient>
+
+    <informationRecipient>
+        <intendedRecipient>
+            <receivedOrganization>
+                <id extension="55555" root="2.16.840.1.113883.4.6"/>
+                <name>HC Payor</name>
+                <telecom value="tel:+1(978)732-2222" use="WP"/>
+                <addr use="WP">
+                    <streetAddressLine>123 Healthy Way Circle</streetAddressLine>
+                    <city>Mid Lake</city><state>MI</state><postalCode>49735</postalCode>
+                    <country>US</country>
+                </addr>
+            </receivedOrganization>
+        </intendedRecipient>
+    </informationRecipient>
+
+    <legalAuthenticator>
+        <time value="20140916190000"/>
+        <signatureCode code="S"/>
+        <assignedEntity>
+            <id root="ED93D9A5-3152-4D58-86F8-F44A4476286B" extension="DocumentAuthor1"/>
+            <id extension="22222" root="2.16.840.1.113883.4.6"/>
+            <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101"
+                displayName="Adult Medicine" codeSystemName="NUCC"/>
+            <addr use="WP">
+                <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                <country>US</country>
+            </addr>
+            <telecom value="tel:+1(301)444-1201" use="WP"/>
+            <assignedPerson>
+                <name>
+                    <given>Eric</given>
+                    <given>E</given>
+                    <family>Mergency</family>
+                    <suffix>MD</suffix>
+                </name>
+            </assignedPerson>
+        </assignedEntity>
+    </legalAuthenticator>
+
+
+
+    <documentationOf>
+        <serviceEvent classCode="ACT">
+
+            <effectiveTime>
+                <low value="20140916171500"/>
+                <high value="20140916190000"/>
+            </effectiveTime>
+
+            <!-- If performers are working and acting as a coordinated team within the same organization
+                 then they are listed as performers on the same care plan.  
+                -->
+            <!-- Need to work on how to use the code element to say this was a certain type of ED Visit. -->
+            <performer typeCode="PPRF">
+                <!--<functionCode></functionCode>-->
+                <time value="201409161715"/>
+                <assignedEntity>
+                    <id extension="22222" root="2.16.840.1.113883.4.6"/>
+                    <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101"
+                        displayName="Adult Medicine" codeSystemName="NUCC"/>
+                    <addr use="WP">
+                        <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                        <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                        <country>US</country>
+                    </addr>
+                    <telecom value="tel:+1(301)444-1201" use="WP"/>
+                    <assignedPerson>
+                        <name>
+                            <given>Eric</given>
+                            <given>E</given>
+                            <family>Mergency</family>
+                            <suffix>MD</suffix>
+                        </name>
+                    </assignedPerson>
+                </assignedEntity>
+            </performer>
+        </serviceEvent>
+    </documentationOf>
+
+    <!-- Component of the Encompassing Encounter could also be included here. -->
+    <componentOf>
+        <encompassingEncounter>
+            <!-- More work needs to be done to establish how to code different encounter types -->
+            <code/>
+            <effectiveTime>
+                <low value="20140916171500"/>
+                <high value="20140916190000"/>
+            </effectiveTime>
+            <responsibleParty>
+                <assignedEntity>
+                    <id extension="22222" root="2.16.840.1.113883.4.6"/>
+                    <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101"
+                        displayName="Adult Medicine" codeSystemName="NUCC"/>
+                    <addr use="WP">
+                        <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                        <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                        <country>US</country>
+                    </addr>
+                    <telecom value="tel:+1(301)444-1201" use="WP"/>
+                    <assignedPerson>
+                        <name>
+                            <given>Eric</given>
+                            <given>E</given>
+                            <family>Mergency</family>
+                            <suffix>MD</suffix>
+                        </name>
+                    </assignedPerson>
+                </assignedEntity>
+            </responsibleParty>
+            <location>
+                <healthCareFacility>
+                    <!-- The facility ID  -->
+                    <id/>
+                    <!-- A code to indicate the type of facility -->
+                    <code/>
+                    <location>
+                        <name>Hometown Hospital Group</name>
+                        <addr use="WP">
+                            <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                            <city>Silver
+                                Spring</city><state>MD</state><postalCode>20901</postalCode>
+                            <country>US</country>
+                        </addr>
+                    </location>
+                    <serviceProviderOrganization>
+                        <!-- This id identifies the entity within the application. It is the "internal id" -->
+                        <id root="BFFD5824-5A11-4ED4-B284-6BA77AF6C382" extension="Custodian"/>
+                        <!-- This is an external id. The root identifies the context in which the extention has meaning. -->
+                        <id extension="654321" root="2.16.840.1.113883.4.6"/>
+                        <name>Hometown Hospital Group</name>
+                        <telecom value="tel:+1(301)444-1200" use="WP"/>
+                        <addr use="WP">
+                            <streetAddressLine>1234 Hospital Ave.</streetAddressLine>
+                            <city>Silver
+                                Spring</city><state>MD</state><postalCode>20901</postalCode>
+                            <country>US</country>
+                        </addr>
+                    </serviceProviderOrganization>
+                </healthCareFacility>
+            </location>
+        </encompassingEncounter>
+    </componentOf>
+
+    <!-- CDA Body -->
+    <component>
+        <structuredBody>
+
+            <!-- Every Section follows this pattern. -->
+            <!--<component>
+                <!-\- nullFlavor of NI indicates No Information.-\->
+                <!-\- Validator currently checks for entries even in case of nullFlavor - this will need to be updated if approved.-\->
+                <section>
+                    <templateId root="1.2.3" extension="The-template-version"/>
+                    <!-\- ids -\-> 
+                    <id root="A-GUID-FOR-THIS-SECTION" extension="Assess-Eval"/>
+                    <code code="11383-7" displayName="Patient Problem Outcome" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>SECTION TITLE</title>
+                    <text>Content that belongs in this section.</text>
+                    <!-\- Associated machine readable entries go here.-\->
+                </section>
+            </component>-->
+            <component>
+                <section>
+                    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.13.2.1"/>
+                    <!-- ids -->
+                    <id root="2F3EA3E8-A3C2-4711-ACDC-BED22454A8BD" extension="CheifComplaint"/>
+                    <code code="10154-3" displayName="Cheif complaint Narrative - Reported"
+                        codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>CHEIF COMPLAINT</title>
+                    <text>
+                        <list>
+                            <caption>Patient was experiencing</caption>
+                            <item>shortness of breath</item>
+                            <item>uncontrollable coughing</item>
+                            <item>trouble talking and walking</item>
+                            <item>tightness in chest</item>
+                        </list>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01"/>
+                    <!-- ids -->
+                    <id root="B179978D-434C-4457-8DF9-859D5698B18A" extension="ProblemList"/>
+                    <code code="11450-4" displayName="Problem list - Reported"
+                        codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>PROBLEM SECTION</title>
+                    <text>
+                        <content>
+                            <content>09/16/2014 (7:45 PM)</content>
+                            <content>Eric E. Mergency, MD</content>
+                        </content>
+                        <list>
+                            <item>shortness of breath (symptom)</item>
+                            <item>uncontrollable coughing (symptom)</item>
+                            <item>trouble talking and walking (symptom)</item>
+                            <item>tightness in chest (symptom)</item>
+                            <item>pale (finding)</item>
+                            <item>sweaty face (finding)</item>
+                            <item>wheezing (finding)</item>
+                            <item>no hives (finding)</item>
+                            <item>uncontrolled asthma (diagnosis)</item>
+                        </list>
+                        <br></br>
+                        <list>
+                            <caption>Problem List</caption>
+                            <item>Asthma</item>
+                            <item>Depression</item>
+                            <item>Diabetes</item>
+                        </list>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4" />
+                    <!-- ids --> 
+                    <id root="0E52EC3F-B3D7-4CCE-AAB6-C9C9E80C997E" extension="HistoryOfPresentIllness"/>
+                    <code code="10164-2" displayName="History of present illness Narrative" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>HISTORY OF PRESENT ILLNESS</title>
+                    <text>Patient was diagnosed with asthma in 2010. Takes albuterol. Recently was prescibed an inhaled steroid, prescription not yet picked up. 
+                        Patient reports experiencing occasional "flare-ups", especially during allergy seasons. 
+                        Patient was recently diagnosed with diabetes; now taking Metformin. 
+                        Recently started on bupropion for depression.</text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01" />
+                    <!-- ids --> 
+                    <id root="B1E74908-A721-418D-BE81-EFAEF9703737" extension="SocialHistory"/>
+                    <code code="29762-2" displayName="Social History Narrative" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>SOCIAL HISTORY</title>
+                    <text>
+                        <content>Current Smoker (since 1978)</content>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.6" extension="2015-08-01" />
+                    <!-- ids --> 
+                    <id root="C0F136E2-B9D1-4E0C-8287-4DE574645AE1" extension="Allergies"/>
+                    <code code="48765-2" displayName="History of Allergies and adverse reactions" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>ALLERGIES</title>
+                    <text>No known allergies.</text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.44" extension="2015-08-01" />
+                    <!-- ids --> 
+                    <id root="B9EC5590-D735-40EC-A980-71F73AFB019F" extension="AdmissionMedications"/>
+                    <code code="42346-7" displayName="Medications on admission (narrative)" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>ADMISSION MEDICATIONS</title>
+                    <text>
+                        <list>
+                            <item>Pro-Air Albuterol</item>
+                            <item>bupropion</item>
+                            <item>fluticasone</item>
+                            <item>Metformin</item>
+                        </list>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.11" extension="2015-08-01" />
+                    <!-- ids --> 
+                    <id root="E6FE1920-C165-4D0B-9A77-C92731720525" extension="DischargeMedications"/>
+                    <code code="10183-2" displayName="Dispital discharge medication (narrative)" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>DISCHARGE MEDICATIONS</title>
+                    <text>
+                        <content>No change in medication orders.</content>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.4" extension="2015-08-01" />
+                    <!-- ids --> 
+                    <id root="A4925CF3-4EF2-4A93-8CD0-236FCC596717" extension="VitalSigns"/>
+                    <code code="8716-3" displayName="Vital Signs" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>VITAL SIGNS</title>
+                    <text>
+                        <list>
+                            <caption>Vital signs (09/17/2014 7:50 PM) </caption>
+                            <item>Height: 68 inches</item>
+                            <item>Weight: 220 pounds</item>
+                            <item>Blood Pressure: <content>135</content><content>mmHg</content> / <content>85</content><content>mmHg</content></item>
+                            <item>What would have been Adam's oxygen saturation reading?</item>
+                            <item>Temperature: <content>98.6 F</content></item>
+                        </list>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09" />
+                    <!-- ids --> 
+                    <id root="73DEB1AA-9940-4FFC-848A-DA336CDA8E06" extension="HospitalCourse"/>
+                    <code code="8648-8" displayName="Hospital course (narrative)" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>HOSPITAL COURSE</title>
+                    <text>
+                        <list>
+                            <caption>Procedures Performed</caption>
+                            <item>Intermittent positive pressure breathing treatment with nebulized medication. Performed by: Eric E. Mergency, MD (09/16/2014 8:00PM)</item>
+                        </list>
+                        
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.5" />
+                    <!-- ids --> 
+                    <id root="7EE2058E-DB45-4F76-B8C3-25FDF6180908" extension="PlanOfTreatment"/>
+                    <code code="18776-5" displayName="Plan of treatment (narrative)" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>PLAN OF TREATMENT</title>
+                    <text>
+                        <list>
+                            <item>Take medications as prescribed.</item>
+                            <item>Use inhaler as needed.</item>
+                            <item>Follow-up with PCP.</item>
+                        </list>
+                        
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.24"  extension="2015-08-01"/>
+                    <!-- ids --> 
+                    <id root="E7D65445-DBF2-4145-95A3-D8A5C56ABEE6" extension="DischargeDiagnosis"/>
+                    <code code="18776-5" displayName="Plan of treatment (narrative)" codeSystem="2.16.840.1.113883.6.1"/>
+                    <title>DISCHARGE DIAGNOSIS</title>
+                    <text>
+                        <content>Moderate persistent asthma, uncomplicated (J45.40)</content>
+                    </text>
+                    <!-- Associated machine readable entries go here.-->
+                </section>
+            </component>
+          
+            <component>
+                <section>
+                    <!-- *** Payers section *** -->
+                    <templateId root="2.16.840.1.113883.10.20.22.2.18.2"/>
+                    <id root="8061F2B6-7BC3-40D2-BDD6-6F5A7865824E" extension="PayerSection"/>
+                    <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                        displayName="Payer"/>
+                    <title>PAYMENT INFORMATION</title>
+                    
+                    <!--  -->
+                    
+                    <!-- We know the payer is HC Payer.  We need help identifying what the "expected content" would be for the payer section.  Can our implementers help? -->
+                    
+                    <text>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Payer</th>
+                                    <th>ID</th>
+                                    <th>Effective Date</th>
+                                    <th>Coverage Group</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>HC Payer</td>
+                                    <td>123456789</td>
+                                    <td>01/01/2014</td>
+                                    <td>Work Is Fun Group</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </text>
+                </section>
+            </component>
+            
+        </structuredBody>
+    </component>
+</ClinicalDocument>
