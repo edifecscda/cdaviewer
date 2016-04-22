@@ -2,11 +2,11 @@ var cdaApp = angular.module("cdaApp",['ngRoute', 'angularFileUpload']);
 
 cdaApp.config(['$routeProvider',
   function($routeProvider) {
-	$routeProvider.when('/viewCDA', {
+	$routeProvider.when('/viewCDA/', {
     	  templateUrl: 'templates/viewcda.html'
       }).
       otherwise({
-        redirectTo: '/viewCDA'
+        redirectTo: '/viewCDA/'
       });
     
 }]);

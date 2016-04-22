@@ -107,12 +107,14 @@
                     </div>-->
                     <div class="content-wrapper">
 	                    <h5>{{item.text}}</h5>
+	                    <h5>{{item.content}}</h5>
 	                    <!-- <ul>
 	                    	<li class="paragraph-label" ng-repeat="content in item.content"><span>{{content}}</span></li>
                         </ul>-->
 	                    
 	                     <ul ng-repeat="listObject in item.list">
-                           	<li class="header" ng-if="listObject.caption">{{listObject.caption}}</li>
+                           <h2>{{listObject.paragraph}}</h2>
+                           		<li class="header" style="white-space: pre;" ng-if="listObject.caption">{{listObject.caption}}</li>
                             	<ul>
                             		<li class="paragraph-label" ng-repeat="listitem in listObject.listitem"><span>{{listitem}}</span>
                             		</li>
@@ -121,6 +123,7 @@
 	                    
 	                    
 	                    <div ng-repeat="table in item.table">
+							<h2>{{table.paragraph}}</h2>
 							<table border="1px" style="width:100%; margin-top:40px;">
 	                    		<thead style="background-color:#3BAFDA; color:#FFFFFF">
 	                    			<tr ng-repeat="tr in table.thead.tr">

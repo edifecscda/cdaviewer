@@ -1,6 +1,11 @@
-cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploader) {
+cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploader, $route) {
 	
-$scope.showIFrame = false;
+	$scope.showIFrame = false;
+	
+	$scope.reload = function(){
+		$route.reload();
+		$scope.showIFrame = false;
+	}
 	
 	$scope.selectedFile = [];
 	
@@ -80,73 +85,84 @@ $scope.showIFrame = false;
 	}
 	
 	$scope.processResponse = function(object){
-		var newItems = [];
-		for(var i = 0; i< object.ClinicalDocument.component.structuredBody.component.length; i++){
-			var component = object.ClinicalDocument.component.structuredBody.component[i];
-			for (var j = 0; j<component.section.length ; j++){
-				newItems.push($scope.processSection(component.section[j]));
-			}
-			if (component.section && !component.section.length){
-				newItems.push($scope.processSection(component.section));
+		try{
+			var newItems = [];
+			for(var i = 0; i< object.ClinicalDocument.component.structuredBody.component.length; i++){
+				var component = object.ClinicalDocument.component.structuredBody.component[i];
+				for (var j = 0; j<component.section.length ; j++){
+					newItems.push($scope.processSection(component.section[j]));
+				}
+				if (component.section && !component.section.length){
+					newItems.push($scope.processSection(component.section));
+				}
+				
 			}
 			
-		}
-		
-		$scope.testObject.items = newItems;
-		if (object.ClinicalDocument.recordTarget.patientRole.patient.name.length){
-			if (object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family.content){
-				$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family.content + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name[0].given;
+			$scope.testObject.items = newItems;
+			if (object.ClinicalDocument.recordTarget.patientRole.patient.name.length){
+				if (object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family.content){
+					$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family.content + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name[0].given.content;
+				}
+				else{
+					$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name[0].given;
+				}
+					
 			}
 			else{
-				$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name[0].family + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name[0].given;
+				if (object.ClinicalDocument.recordTarget.patientRole.patient.name.family.content){
+					$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name.family.content + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name.given.content;
+				}
+				else{
+					$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name.family + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name.given;
+				}
 			}
-				
-		}
-		else{
-			if (object.ClinicalDocument.recordTarget.patientRole.patient.name.family.content){
-				$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name.family.content + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name.given;
+			$scope.testObject.DOB = object.ClinicalDocument.recordTarget.patientRole.patient.birthTime['value'];
+			$scope.testObject.sex =  object.ClinicalDocument.recordTarget.patientRole.patient.administrativeGenderCode['-displayName'];
+			$scope.testObject.contactInfo = object.ClinicalDocument.recordTarget.patientRole.addr.streetAddressLine + ", " +
+											object.ClinicalDocument.recordTarget.patientRole.addr.city + ", " + 
+											object.ClinicalDocument.recordTarget.patientRole.addr.state+ ", " + 
+											object.ClinicalDocument.recordTarget.patientRole.addr.postalCode+ ", " + 
+											object.ClinicalDocument.recordTarget.patientRole.addr.country;
+			
+			if (!object.ClinicalDocument.author.length){
+				if (!object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family){
+					if (typeof object.ClinicalDocument.author.assignedAuthor.representedOrganization.name === "string" || object.ClinicalDocument.author.assignedAuthor.representedOrganization.name instanceof String){
+						$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.representedOrganization.name;
+					}
+					else
+					{
+						$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name;
+					}
+					
+					return;
+				}
+				$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family;
+				if (typeof object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given instanceof String ){
+					$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given;
+				}
+				else
+				{
+					$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given[0];
+				}
 			}
 			else{
-				$scope.testObject.patient = object.ClinicalDocument.recordTarget.patientRole.patient.name.family + " " + object.ClinicalDocument.recordTarget.patientRole.patient.name.given;
+				if (!object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.family){
+					$scope.testObject.author = object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name;
+					return;
+				}
+				$scope.testObject.author = object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.family;
+				if (typeof object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given instanceof String ){
+					$scope.testObject.author =  $scope.testObject.author  + " " + object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given;
+				}
+				else
+				{
+					$scope.testObject.author =  $scope.testObject.author + " " + object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given[0];
+				}
 			}
 		}
-		$scope.testObject.DOB = object.ClinicalDocument.recordTarget.patientRole.patient.birthTime['value'];
-		$scope.testObject.sex =  object.ClinicalDocument.recordTarget.patientRole.patient.administrativeGenderCode['-displayName'];
-		$scope.testObject.contactInfo = object.ClinicalDocument.recordTarget.patientRole.addr.streetAddressLine + ", " +
-										object.ClinicalDocument.recordTarget.patientRole.addr.city + ", " + 
-										object.ClinicalDocument.recordTarget.patientRole.addr.state+ ", " + 
-										object.ClinicalDocument.recordTarget.patientRole.addr.postalCode+ ", " + 
-										object.ClinicalDocument.recordTarget.patientRole.addr.country;
-		
-		if (!object.ClinicalDocument.author.length){
-			if (!object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family){
-				$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name;
-				return;
-			}
-			$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family;
-			if (typeof object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given instanceof String ){
-				$scope.testObject.author = + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given;
-			}
-			else
-			{
-				$scope.testObject.author = + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given[0];
-			}
+		catch(e){
+			console.log(e);
 		}
-		else{
-			if (!object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.family){
-				$scope.testObject.author = object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name;
-				return;
-			}
-			$scope.testObject.author = object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.family;
-			if (typeof object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given instanceof String ){
-				$scope.testObject.author = + " " + object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given;
-			}
-			else
-			{
-				$scope.testObject.author = + " " + object.ClinicalDocument.author[0].assignedAuthor.assignedPerson.name.given[0];
-			}
-		}
-		
 		
 	}
 	
@@ -154,12 +170,12 @@ $scope.showIFrame = false;
 		var found = false;
 		var item = new Object();
 		item['title'] = section.title;
+		// process table section 
 		if (section.text.table && !section.text.table.length){
 			item['table'] = [];
 			item['table'].push($scope.processTable(section.text.table));
 			found = true;
 		}
-		
 		if (section.text.table && section.text.table.length > 0){
 			item['table'] = [];
 			for(var i = 0; i < section.text.table.length; i++){
@@ -168,47 +184,79 @@ $scope.showIFrame = false;
 			found = true;
 		}
 		
-		/*if (section.text.content)
+		// text contains content section
+		if (section.text.content)
 		{
 			item['content'] = [];
-			if (section.text.content.content){
-				for (var i = 0; i<section.text.content.content.length; i++){
-					item['content'].push(section.text.content.content[i]);
+			if (section.text.content instanceof String || typeof section.text.content === "string"){
+				item['content'] = section.text.content;
+			}
+			else{
+				if (section.text.content.length){
+					for (var i = 0; i<section.text.content.length; i++){
+						item['content'].push(section.text.content[i]);
+					}
+				}
+				else if (section.text.content.content){
+					item['content'].push(section.text.content.content);
 				}
 			}
-			else
-			{
-				item['content'].push(section.text.content);
+			
+			if (item.content.length == 0){
+				item.content = "";
 			}
 			
 			found = true;
 		}
-		*/
+		
+		// text contains list section
 		if(section.text.list && !section.text.list.length){
 			item['list'] = [];
 			var listObject = new Object();
+			// add list caption1
 			if (section.text.list.caption){
 				listObject['caption'] = section.text.list.caption;
 			}
 			listObject['listitem'] = [];
+			// process following structure <list>/<item> - only one item
 			if (section.text.list.item && !section.text.list.item.length){
 
-				listObject['listitem'].push(section.text.list.item);
+				// check the possibility of having "<content>" in the item
+				if (section.text.list.item.content && (typeof section.text.list.item.content==="string" || section.text.list.item.content instanceof String))
+				{
+					listObject['listitem'].push($scope.replaceCaret(section.text.list.item.content));
+				}
+				// there is no content but Item is string
+				else if (typeof section.text.list.item == "string" || section.text.list.item instanceof String)
+				{
+					listObject['listitem'].push($scope.replaceCaret(section.text.list.item));
+				}
+
 			}
 			else{
+				// item has length but it is string <item>blabla</item>
 				if (typeof section.text.list.item === 'string' || section.text.list.item instanceof String){
-					listObject['listitem'].push(section.text.list.item);
+					listObject['listitem'].push($scope.replaceCaret(section.text.list.item));
 				}
+				// there are a lot of items inside the list : <list><item/><item/></list>
 				else{
 					for (var i = 0; i<section.text.list.item.length; i++){
-						listObject['listitem'].push(section.text.list.item[i]);
+						// item contains <content> section
+						if (section.text.list.item[i].content && (typeof section.text.list.item[i].content==="string" || section.text.list.item[i].content instanceof String))
+						{
+							listObject['listitem'].push($scope.replaceCaret(section.text.list.item[i].content));
+						}
+						else
+						{
+							listObject['listitem'].push($scope.replaceCaret(section.text.list.item[i]));
+						}
 					}
 				}
 			}
 			item['list'].push(listObject);
 			found = true;
 		}
-		
+		// process multiple lists
 		if(section.text.list && section.text.list.length>0){
 			var complexSection = false;
 			item['list'] = [];
@@ -219,7 +267,7 @@ $scope.showIFrame = false;
 				}
 				listObject['listitem'] = [];
 				if (typeof section.text.list[i].item === 'string' || section.text.list[i].item instanceof String){
-					listObject['listitem'].push(section.text.list.item);
+					listObject['listitem'].push($scope.replaceCaret(section.text.list.item));
 				}
 				else if (section.text.list[i].item && !section.text.list[i].item.length){
 						listObject = this.processAdditionalLists(section.text.list[i].item);
@@ -229,7 +277,7 @@ $scope.showIFrame = false;
 				} else{
 					for (var j = 0; j<section.text.list[i].item.length; j++){
 						if (typeof section.text.list[i].item[j] === 'string' || section.text.list[i].item[j] instanceof String){
-							listObject['listitem'].push(section.text.list[i].item[j]);
+							listObject['listitem'].push($scope.replaceCaret(section.text.list[i].item[j]));
 						}
 						else {
 							listObject = this.processAdditionalLists(section.text.list[i].item[j] );
@@ -246,6 +294,33 @@ $scope.showIFrame = false;
 			found = true;
 		}
 		
+		if(section.text.paragraph){
+			//item['paragraph'] = [];
+			if (section.text.paragraph instanceof String || typeof section.text.paragraph == "string"){
+				// there is only one paragraph in section so we need to add it to the list or table which were provided
+				if (typeof item['list'] !="undefined"){
+					item['list'][0]['paragraph'] = section.text.paragraph;
+				}
+				if (typeof item['table'] !="undefined"){
+					item['table'][0]['paragraph'] = section.text.paragraph;
+				}
+			} 
+			else{
+				//there is many paragraphs  - usually their number equals to number of other elements
+				for(var i = 0; i < section.text.paragraph.length; i++){
+					//item['paragraph'].push(section.text.paragraph[i]);
+					if (typeof item['list'] !="undefined"){
+						item['list'][i]['paragraph'] = section.text.paragraph[i];
+					}
+					if (typeof item['table'] !="undefined"){
+						item['table'][i]['paragraph'] = section.text.paragraph[i];
+					}
+				}
+			}
+			
+			found = true;
+		}
+		
 		if (!found) // there is no special elements but simple text
 		{
 			item['text'] = section.text; // text contains simple text
@@ -256,17 +331,18 @@ $scope.showIFrame = false;
 	
 	$scope.processAdditionalLists = function(complexItem){
 		listObject = new Object();
-		listObject['caption'] = complexItem.content;
+		listObject['caption'] = $scope.replaceCaret(complexItem.content);
 		listObject['listitem'] = [];
-		if (typeof complexItem.list.item === 'string' || complexItem.list.item instanceof String){
-			listObject['listitem'].push(complexItem.list.item);
-		}
-		else{
-			for (var i= 0; i <  complexItem.list.item.length; i++){
-				listObject['listitem'].push(complexItem.list.item[i]);
+		if (complexItem.list){
+			if (typeof complexItem.list.item === 'string' || complexItem.list.item instanceof String){
+				listObject['listitem'].push(complexItem.list.item);
+			}
+			else{
+				for (var i= 0; i <  complexItem.list.item.length; i++){
+					listObject['listitem'].push(complexItem.list.item[i]);
+				}
 			}
 		}
-		
 		return listObject;
 	}
 	
@@ -279,33 +355,34 @@ $scope.showIFrame = false;
 		var td = [];
 		if (typeof item.thead != 'undefined'){
 			if (!item.thead.tr.length){
-				if (!item.thead.tr.th.length){
-					if (typeof item.thead.tr.th === 'string' || item.thead.tr.th instanceof String){ // there can be a simple string
-						td.push({'text':item.thead.tr.th,'colspan':1 });
-					}
-					else{
+				
+				if (typeof item.thead.tr.th === 'string' || item.thead.tr.th instanceof String){ // there can be a simple string
+					td.push({'text':item.thead.tr.th,'colspan':1 });
+				}
+				else if (!item.thead.tr.th.length){
+					
 						if (item.thead.tr.th.colspan){
 							td.push({'text':item.thead.tr.th.content,'colspan':item.thead.tr.th.colspan });
 						}
 						else{
 							td.push({'text':item.thead.tr.th.content,'colspan':1 });
 						}
-					}
 				}
-				
-				for (var i = 0; i< item.thead.tr.th.length; i++){
-					if (typeof item.thead.tr.th[i] === 'string' || item.thead.tr.th[i] instanceof String){ // there can be a simple string
-						td.push({'text':item.thead.tr.th[i],'colspan':1 });
-					}
-					else{
-						if (item.thead.tr.th[i].colspan){
-							td.push({'text':item.thead.tr.th[i].content,'colspan':item.thead.tr.th[i].colspan });
+				else {
+					for (var i = 0; i< item.thead.tr.th.length; i++){
+						if (typeof item.thead.tr.th[i] === 'string' || item.thead.tr.th[i] instanceof String){ // there can be a simple string
+							td.push({'text':item.thead.tr.th[i],'colspan':1 });
 						}
 						else{
-							td.push({'text':item.thead.tr.th[i].content,'colspan':1 });
+							if (item.thead.tr.th[i].colspan){
+								td.push({'text':item.thead.tr.th[i].content,'colspan':item.thead.tr.th[i].colspan });
+							}
+							else{
+								td.push({'text':item.thead.tr.th[i].content,'colspan':1 });
+							}
 						}
+						
 					}
-					
 				}
 			
 				var trObj = new Object();
@@ -319,33 +396,33 @@ $scope.showIFrame = false;
 			else {
 				for (var i  = 0; i<item.thead.tr.length; i++){
 					
-					if (!item.thead.tr[i].th.length){
-						if (typeof item.thead.tr[i].th === 'string' || item.thead.tr[i].th instanceof String){ // there can be a simple string
-							td.push({'text':item.thead.tr[i].th,'colspan':1 });
-						}
-						else{
+					if (typeof item.thead.tr[i].th === 'string' || item.thead.tr[i].th instanceof String){ // there can be a simple string
+						td.push({'text':item.thead.tr[i].th,'colspan':1 });
+					} 
+					else if (!item.thead.tr[i].th.length){
+						
 							if (item.thead.tr[i].th.colspan){
 								td.push({'text':item.thead.tr[i].th.content,'colspan':item.thead.tr[i].th.colspan });
 							}
 							else{
 								td.push({'text':item.thead.tr[i].th.content,'colspan':1 });
 							}
-						}
 					}
-					
-					for (var j = 0; j< item.thead.tr[i].th.length; j++){
-						if (typeof item.thead.tr[i].th[j] === 'string' || item.thead.tr[i].th[j] instanceof String){ // there can be a simple string
-							td.push({'text':item.thead.tr[i].th[j],'colspan':1 });
-						}
-						else{
-							if (item.thead.tr[i].th[j].colspan){
-								td.push({'text':item.thead.tr[i].th[j].content,'colspan':item.thead.tr[i].th[j].colspan });
+					else {
+						for (var j = 0; j< item.thead.tr[i].th.length; j++){
+							if (typeof item.thead.tr[i].th[j] === 'string' || item.thead.tr[i].th[j] instanceof String){ // there can be a simple string
+								td.push({'text':item.thead.tr[i].th[j],'colspan':1 });
 							}
 							else{
-								td.push({'text':item.thead.tr[i].th[j].content,'colspan':1 });
+								if (item.thead.tr[i].th[j].colspan){
+									td.push({'text':item.thead.tr[i].th[j].content,'colspan':item.thead.tr[i].th[j].colspan });
+								}
+								else{
+									td.push({'text':item.thead.tr[i].th[j].content,'colspan':1 });
+								}
 							}
-						}
 						
+						}
 					}
 					
 					var trObj = new Object();
@@ -359,82 +436,13 @@ $scope.showIFrame = false;
 			}
 		}
 		
-		if (!item.tbody.tr.length){
-			if (item.tbody.tr.th){
-				if (typeof item.tbody.tr.th === 'string' || item.tbody.tr.th instanceof String){ // there can be a simple string
-					td.push({'text':item.tbody.tr.th});
-				}
-				else{
-					td.push({'text':item.tbody.tr.th.content});
-				}
-			}
-			if (typeof item.tbody.tr.td === 'string' || item.tbody.tr.td instanceof String){ // there can be a simple string
-				td.push({'text':item.tbody.tr.td});
-			}
-			else
-			{
-			for (var i = 0; i< item.tbody.tr.td.length; i++){
-				var itemTD = item.tbody.tr.td[i];
-				var found  = false;
-				if (itemTD.length && typeof itemTD != 'string'){
-					for(var j = 0; j< itemTD.length; j++ ){
-						if (typeof itemTD[j] === 'string' || itemTD[j] instanceof String){
-							td.push({'text': itemTD[j]});
-							found = true;
-							break;
-						}
-					}
-				}
-				if (itemTD.list){
-					var list = [];
-					if (itemTD.list.length){
-						for(var j = 0; j< itemTD.list.length; j++ ){
-							list.push(this.processListObj(itemTD.list[j]));
-						}
-					}
-					else
-					{
-						list.push(this.processListObj(itemTD.list));
-					}
-					td.push({'list': list});
-					found = true;
-				}
-				
-				if(itemTD['content']){
-					td.push({'text':itemTD['content']});
-					found = true;
-				}
-				
-				if (itemTD['linkHtml']){
-					td.push({'link': itemTD['linkHtml']});
-					found = true;
-				}
-				
-				if (!found){
-					td.push({'text':itemTD});
-				}
-				/*if (!itemTD['content'] && !itemTD.list ){
-					td.push({'text':itemTD});
-				}
-				else if (!itemTD.list){
-					td.push({'text':itemTD['content']});
-				}
-				else{
-					var list = [];
-					if (itemTD.list.length){
-						for(var j = 0; j< itemTD.list.length; j++ ){
-							list.push(this.processListObj(itemTD.list[j]));
-						}
-					}
-					else
-					{
-						list.push(this.processListObj(itemTD.list));
-					}
-					td.push({'list': list});
-				}*/
-			}
-			}
-			
+		if (item.tbody == ""){
+			tbody['tr'] = [];
+			table['tbody'] = tbody;
+		}
+		else if (!item.tbody.tr.length){
+			// refactoring 
+			var td = $scope.processTR(item.tbody.tr);
 			
 			var trObj = new Object();
 			trObj['td'] = td;
@@ -447,84 +455,9 @@ $scope.showIFrame = false;
 		else
 		{
 			for(var i = 0;  i< item.tbody.tr.length; i++){
-				var itemTR = item.tbody.tr[i]
-				if (itemTR.th){
-					if (typeof itemTR.th === 'string' || itemTR.th instanceof String){ // there can be a simple string
-						td.push({'text':itemTR.th});
-					}
-					else{
-						td.push({'text':itemTR.th.content});
-					}
-				}
-				if (typeof  itemTR.td === 'string' ||  itemTR.td instanceof String){ // there can be a string 
-					td.push({'text': itemTR.td});
-				}
-				else
-				{
-				for (var j = 0; j< itemTR.td.length; j++){
-					var itemTD = itemTR.td[j]
-					var found  = false;
-					if (itemTD.length && typeof itemTD != 'string'){
-						for(var k = 0; k< itemTD.length; k++ ){
-							if (typeof itemTD[k] === 'string' || itemTD[k] instanceof String){
-								td.push({'text': itemTD[k]});
-								found = true;
-								break;
-							}
-						}
-					}
-					if (itemTD.list){
-						var list = [];
-						if (itemTD.list.length){
-							for(var k = 0; k< itemTD.list.length; k++ ){
-								list.push(this.processListObj(itemTD.list[k]));
-							}
-						}
-						else
-						{
-							list.push(this.processListObj(itemTD.list));
-						}
-						td.push({'list': list});
-						found = true;
-					}
-					
-					if(itemTD['content']){
-						td.push({'text':itemTD['content']});
-						found = true;
-					}
-					
-					if (itemTD['linkHtml']){
-						td.push({'link': itemTD['linkHtml']});
-						found = true;
-					}
-					
-					if (!found){
-						td.push({'text':itemTD});
-					}
-					
-					/*if (!itemTD['content'] && !itemTD.list ){
-						td.push({'text':itemTD});
-					}
-					else if (!itemTD.list){
-						td.push({'text':itemTD['content']});
-					}
-					else{
-						var list = [];
-						
-						if (itemTD.list.length){
-							for(var k = 0; k< itemTD.list.length; k++ ){
-								list.push(this.processListObj(itemTD.list[k]));
-							}
-						}
-						else
-						{
-							list.push(this.processListObj(itemTD.list));
-						}
-							
-						td.push({'list': list});
-					}*/
-				}
-				}
+				//var itemTR = item.tbody.tr[i]
+				var td = $scope.processTR(item.tbody.tr[i]);
+				
 				var trObj = new Object();
 				trObj['td'] = td;
 				td = [];
@@ -537,11 +470,13 @@ $scope.showIFrame = false;
 			table['tbody'] = tbody;
 		}
 		
+		// we need to add empty TD to the table body as there can be gaps in CDA
 		if (typeof table.thead != 'undefined'){
 			for (var i = 0; i< table.tbody.tr.length; i++){
-				if (table.tbody.tr[i].td.length < table.thead.tr[table.thead.tr.length - 1].th.length){
-					for(j = 0; j< table.thead.tr[table.thead.tr.length - 1].th.length - table.tbody.tr[i].td.length; j++ ){
-						table.tbody.tr[i].td.push({"text": ""});
+				if (table.tbody.tr[i].td.length < table.thead.tr[table.thead.tr.length - 1].th.length && table.tbody.tr[i].td[0].colspan == 1){
+					var initialBodyLength = table.tbody.tr[i].td.length;
+					for(j = 0; j< table.thead.tr[table.thead.tr.length - 1].th.length - initialBodyLength; j++ ){
+						table.tbody.tr[i].td.push({"text": "", "colspan": "1"});
 					}
 				}
 			}
@@ -560,7 +495,7 @@ $scope.showIFrame = false;
 			listObj['caption']  = "";
 		}
 		
-		if (list.item.length){
+		if (list.item.length && !(typeof list.item === 'string' || list.item instanceof String)){ // item can be simple string not containing the content section 
 			var content = [];
 			var tables = [];
 			for(var i = 0; i< list.item.length; i++){
@@ -589,6 +524,9 @@ $scope.showIFrame = false;
 							tables.push(this.processTable(list.item[i].table[j]));
 						}
 					}
+				}
+				if (typeof list.item[i] === 'string' || list.item[i] instanceof String){
+					content.push( list.item[i]);
 				}
 			}
 			
@@ -631,6 +569,10 @@ $scope.showIFrame = false;
 				}
 			}
 			
+			if (typeof list.item === 'string' || list.item instanceof String){
+				content.push( list.item);
+			}
+			
 			listObj['content'] = content.length!=0? content : "";
 			listObj['table'] = tables.length != 0? tables: ""; 
 		}	
@@ -660,9 +602,155 @@ $scope.showIFrame = false;
 		$scope.showIFrame = true;
 	}
 	
+	
+	
+	
 	$scope.backToList = function(){
 		$scope.showIFrame = false;
 	}
 	
+	
+	
+	
+	$scope.processTR = function(TRitem){
+		var td = [];
+		// tr contains TH 
+		if (TRitem.th){
+			if (typeof TRitem.th === 'string' || TRitem.th instanceof String){ // there can be a simple string
+				td.push({'text':TRitem.th, 'colspan':1});
+			}
+			else if (TRitem.th.length){
+				for (var i = 0; i< TRitem.th.length; i++){
+					if (TRitem.th[i].colspan){
+						td.push({'text':TRitem.th[i].content, 'colspan': TRitem.th[i].colspan});
+					}
+					else if (TRitem.th[i].content)
+					{
+						td.push({'text':TRitem.th[i].content, 'colspan':1});
+					}
+					else // just simple string
+					{
+						td.push({'text':TRitem.th[i], 'colspan':1});
+					}
+				}
+			}
+			else{	
+				if (TRitem.th.colspan){
+					td.push({'text':TRitem.th.content, 'colspan': TRitem.th.colspan});
+				}
+				else
+				{
+					td.push({'text':TRitem.th.content, 'colspan':1});
+				}
+			}
+		}
+		// tr contains TD
+		if (TRitem.td){
+			if (typeof TRitem.td === 'string' || TRitem.td instanceof String){ // there can be a simple string
+				td.push({'text':TRitem.td, 'colspan':1});
+			}
+			// there can be a complex object
+			else if (TRitem.td.content){
+				if (TRitem.td.colspan){
+					td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content , 'colspan': TRitem.td.colspan}); // here is the crutch - parsing of the object returns content.content for <content>sdsd</content>
+				}
+				else
+				{
+					td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content, 'colspan':1});
+				}
+			}
+			else
+			{
+			for (var i = 0; i< TRitem.td.length; i++){
+				var itemTD = TRitem.td[i];
+				var found  = false;
+				if (itemTD.length && typeof itemTD != 'string'){
+					var tdContent = "";
+					for(var j = 0; j< itemTD.length; j++ ){
+						if (typeof itemTD[j] === 'string' || itemTD[j] instanceof String){
+							tdContent = tdContent + " " +  itemTD[j];
+						}
+						else if (itemTD[j].content && (typeof itemTD[j].content === 'string' || itemTD[j].content instanceof String)){
+							tdContent = tdContent + " " +  itemTD[j].content;
+						}
+					}
+					
+					td.push({'text': tdContent, 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+					found = true;
+				}
+				if (itemTD.list){
+					var list = [];
+					if (itemTD.list.length){
+						for(var j = 0; j< itemTD.list.length; j++ ){
+							list.push(this.processListObj(itemTD.list[j]));
+						}
+					}
+					else
+					{
+						list.push(this.processListObj(itemTD.list));
+					}
+					td.push({'list': list, 'colspan':1});
+					found = true;
+				}
+				
+				if(itemTD['content']){
+					if ((typeof itemTD.content === 'string' || itemTD.content instanceof String)){
+						td.push({'text':itemTD['content'], 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+						found = true;
+					}
+					else if (itemTD.content.length)
+					{
+						var tdContent = "";
+						for (var j  = 0; j< itemTD.content.length; j ++){
+							if (typeof itemTD.content[j] === 'string' || itemTD.content[j] instanceof String){
+								tdContent = tdContent + " " + itemTD.content[j]; 
+							}
+							else if (typeof itemTD.content[j].content === 'string' || itemTD.content[j].content instanceof String){
+								tdContent = tdContent + " " + itemTD.content[j].content; 
+							}
+								
+						}
+						
+						td.push({'text':tdContent, 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+						found = true;
+					}
+					else if (typeof itemTD.content.content === 'string' || itemTD.content.content instanceof String){
+						td.push({'text':itemTD.content.content, 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+						found = true;
+					}
+					
+				}
+				
+				if ((typeof itemTD['content'] == 'number' || !isNaN(itemTD['content'])) && !found ){
+					td.push({'text':itemTD['content'], 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+					found = true;
+				}
+				
+				if (itemTD['linkHtml']){
+					td.push({'link': itemTD['linkHtml'], 'colspan':typeof itemTD.colspan === "undefined" ? "1" : itemTD.colspan});
+					found = true;
+				}
+				
+				if (!found){
+					if (itemTD instanceof String || typeof itemTD === "string" || typeof itemTD === "number" || !isNaN(itemTD)){
+						td.push({'text':itemTD, 'colspan':1});
+					}
+					else
+					{
+						td.push({'text':"", 'colspan':1});
+					}
+				}
+				
+			}
+			}
+		}
+		return td;
+	}
+	
+	
+	$scope.replaceCaret = function(caretString){
+		var returnString = caretString.replace(/&#13;/g, '\r\n');
+		return returnString;
+	}
 	
 });

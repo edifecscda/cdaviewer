@@ -35,7 +35,7 @@
       		<!-- <div class="collapse navbar-collapse">-->
       			<ul class="nav top-nav">
 	        			<li  class="active">
-        					<a href="#viewCDA"><span class="glyphicon glyphicon-book"></span> CDA Viewer</a>
+        					<a href="#viewCDA" ng-click="reload()"><span class="glyphicon glyphicon-book"></span> CDA Viewer</a>
         				</li>
         		</ul>
      		<!-- </div>-->
