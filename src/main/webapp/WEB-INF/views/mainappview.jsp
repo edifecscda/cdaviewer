@@ -73,6 +73,7 @@
 	<!-- Application -->
 	<script type="text/javascript" src="js/angular/application/mainApp.js"></script>
 	<script type="text/javascript" src="js/angular/application/ViewCDAController.js"></script>
+	<script type="text/javascript" src="js/angular/application/BookBlockController.js"></script>
 	
 	<!-- Directives -->
 	<script type="text/javascript" src="js/angular/application/BookBlockDirective.js"></script>

@@ -8,6 +8,7 @@ cdaApp.directive('bookblock', function($timeout) {
         navNext = $(document).find('.bb-nav-next'),
         navPrev = $(document).find( '.bb-nav-prev'),
         navMenu = $(document).find('.bb-nav-menu'),
+        dropDownMenu = $(document).find('.bb-dropdown-menu'),
         navDot = $(document).find('.dot'),
 
         bb = element.bookblock( {
@@ -24,7 +25,23 @@ cdaApp.directive('bookblock', function($timeout) {
 						var menuItem = $( this );
 						navDot.removeClass( 'selected' );
 						navMenu.removeClass('active');
+						dropDownMenu.removeClass('active');
 						$(navDot.get(i)).addClass('selected');
+						$(dropDownMenu.get(i)).addClass('active');
+						menuItem.addClass('active');
+						element.bookblock( 'jump', i + 1 );
+						return false;
+					} );
+				} );
+                
+                dropDownMenu.each( function( i ) {
+					$( this ).on( 'click touchstart', function( event ) {
+						var menuItem = $( this );
+						navDot.removeClass( 'selected' );
+						navMenu.removeClass('active');
+						dropDownMenu.removeClass('active');
+						$(navDot.get(i)).addClass('selected');
+						$(navMenu.get(i)).addClass('active');
 						menuItem.addClass('active');
 						element.bookblock( 'jump', i + 1 );
 						return false;
@@ -36,6 +53,8 @@ cdaApp.directive('bookblock', function($timeout) {
 						var dot = $( this );
 						navDot.removeClass( 'selected' );
 						navMenu.removeClass('active');
+						dropDownMenu.removeClass('active');
+						$(dropDownMenu.get(i)).addClass('active');
 						$(navMenu.get(i)).addClass('active');
 						dot.addClass( 'selected' );
 						element.bookblock( 'jump', i + 1 );
@@ -50,6 +69,8 @@ cdaApp.directive('bookblock', function($timeout) {
                 	navMenu.removeClass('active');
                 	$(navDot.get(index + 1)).addClass('selected');
                 	$(navMenu.get(index + 1)).addClass('active');
+                	dropDownMenu.removeClass('active');
+					$(dropDownMenu.get(index + 1)).addClass('active');
                     element.bookblock( 'next' );
                     return false;
                 } );
@@ -60,6 +81,8 @@ cdaApp.directive('bookblock', function($timeout) {
                 	navMenu.removeClass('active');
                 	$(navDot.get(index -1)).addClass('selected');
                 	$(navMenu.get(index -1)).addClass('active');
+                	dropDownMenu.removeClass('active');
+					$(dropDownMenu.get(index - 1)).addClass('active');
                     element.bookblock( 'prev' );
                     return false;
                 } );

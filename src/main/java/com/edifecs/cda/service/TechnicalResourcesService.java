@@ -35,7 +35,7 @@ public class TechnicalResourcesService {
 	public String getCDAJson(String xml){
 		String json = "";
 		try{
-			JSONObject jsonObject = XML.toJSONObject(xml);
+			JSONObject jsonObject = XML.toJSONObject(this.removeXmlStringNamespace(xml));
 			json = jsonObject.toString(4).replaceAll("cda:", "");
 			
 		}
@@ -45,4 +45,11 @@ public class TechnicalResourcesService {
 		
 		return json;
 	}
+	
+	private  String removeXmlStringNamespace(String xmlString) {
+		  return xmlString.replaceAll("(<\\?[^<]*\\?>)?", ""). /* remove preamble */
+		  replaceAll("xmlns.*?(\"|\').*?(\"|\')", "") /* remove xmlns declaration */
+		  .replaceAll("(<)(\\w+:)(.*?>)", "$1$3") /* remove opening tag prefix */
+		  .replaceAll("(</)(\\w+:)(.*?>)", "$1$3"); /* remove closing tags prefix */
+		}
 }

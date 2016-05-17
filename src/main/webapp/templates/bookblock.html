@@ -1,19 +1,22 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-controller="BookBlockController">
+<div class="bb-title">
+		<span class="navigation">
+	    	<span class="dropdown-toggle page-control" id="navigationMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        	<i class="fa fa-bars"></i>
+	        </span>
+	        <ul class="dropdown-menu" aria-labelledby="navigationMenu">
+				<li class="bb-dropdown-menu" style="cursor: pointer;">
+	            	<a href="#" ng-click="closeDropDown();">General Info</a>
+	            </li>
+	            <li class="bb-dropdown-menu" ng-repeat="item in testObject.items"><a href="#" ng-click="closeDropDown();">{{item.title}}</a></li>
+			</ul>
+	    </span>
+	    <h2>{{testObject.patient}}</h2>
+	</div>
 <div class="bb-custom-wrapper">
 	<div id="bb-bookblock" class="bb-bookblock bb-vertical" bookblock>
             <div class="bb-item">
-                <div class="bb-title">
-                    <span class="navigation">
-                        <!-- <span class="nav-toggle page-control"><i class="fa fa-bars"></i></span>-->
-                        <!--<span class="page-control bb-nav-prev"><i class="fa fa-angle-left"></i></span>
-                        <span class="page-control bb-nav-next"><i class="fa fa-angle-right"></i></span>
-                        <span class="page-control bb-nav-last"><i class="fa fa-angle-double-right"></i></span>-->
-                    </span>
-                    <h2>{{testObject.patient}}</h2>
-                   <!--   <span class="navigation" style="text-align: right">
-                        <span class="page-control bb-nav-first"><i class="fa fa-chevron-left"></i></span>
-                    </span>-->
-                </div>
+               
                  <nav class="nav-rect">
                    <!--  <span class="prev bb-nav-prev">
                         <i class="fa fa-angle-left"></i>
@@ -80,18 +83,6 @@
             
             
             <div class="bb-item" ng-repeat="item in testObject.items">
-                <div class="bb-title">
-                    <span class="navigation">
-                       <!--  <span class="nav-toggle page-control"><i class="fa fa-bars"></i></span>-->
-                        <!--<span class="page-control bb-nav-prev"><i class="fa fa-angle-left"></i></span>
-                        <span class="page-control bb-nav-next"><i class="fa fa-angle-right"></i></span>
-                        <span class="page-control bb-nav-last"><i class="fa fa-angle-double-right"></i></span>-->
-                    </span>
-                    <h2>{{testObject.patient}}</h2>
-                    <!-- <span class="navigation" style="text-align: right">
-                        <span class="page-control bb-nav-first"><i class="fa fa-chevron-left"></i></span>
-                    </span> -->
-                </div>
                 <nav class="nav-rect">
                     <span class="prev bb-nav-prev">
                         <i class="fa fa-angle-left"></i>

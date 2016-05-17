@@ -1,6 +1,7 @@
 cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploader, $route) {
 	
 	$scope.showIFrame = false;
+	$scope.errorCDA = false;
 	
 	$scope.reload = function(){
 		$route.reload();
@@ -14,9 +15,11 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 	 });
 	 
 	 $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-		 $scope.uploader.queue[0].remove();
 		 $scope.processResponse(response);
-		 $scope.showIFrame = true;
+		 if (!$scope.errorCDA){
+			 $scope.uploader.queue[0].remove();
+			 $scope.showIFrame = true;
+		 }
     };
     $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
    	 $scope.uploader.queue[0].remove();
@@ -25,6 +28,7 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
     $scope.uploader.onAfterAddingFile = function () {
        /* $scope.uploadProgress = 0;
         $scope.selectedFile = $files;*/
+    	$scope.errorCDA = false;
     	if ($scope.uploader.queue.length > 1){
     		var lastAdded = $scope.uploader.queue[$scope.uploader.queue.length - 1];
     		$scope.uploader.clearQueue();
@@ -78,7 +82,9 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 		}).then(function(result){
 			$scope.object = result.data;
 			$scope.processResponse($scope.object);
-			$scope.showIFrame = true;
+			if (!$scope.errorCDA){
+				$scope.showIFrame = true;
+			}
 		}, function(error){
 			alert(error.status + " " + error.statusText);
 		});
@@ -125,24 +131,29 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 											object.ClinicalDocument.recordTarget.patientRole.addr.country;
 			
 			if (!object.ClinicalDocument.author.length){
-				if (!object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family){
-					if (typeof object.ClinicalDocument.author.assignedAuthor.representedOrganization.name === "string" || object.ClinicalDocument.author.assignedAuthor.representedOrganization.name instanceof String){
-						$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.representedOrganization.name;
+				if (!object.ClinicalDocument.author.assignedAuthor.assignedPerson){
+					$scope.testObject.author = "unknown";
+				}
+				else{
+					if (!object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family){
+						if (typeof object.ClinicalDocument.author.assignedAuthor.representedOrganization.name === "string" || object.ClinicalDocument.author.assignedAuthor.representedOrganization.name instanceof String){
+							$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.representedOrganization.name;
+						}
+						else
+						{
+							$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name;
+						}
+						
+						return;
+					}
+					$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family;
+					if (typeof object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given instanceof String ){
+						$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given;
 					}
 					else
 					{
-						$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name;
+						$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given[0];
 					}
-					
-					return;
-				}
-				$scope.testObject.author = object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.family;
-				if (typeof object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given === 'string' || object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given instanceof String ){
-					$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given;
-				}
-				else
-				{
-					$scope.testObject.author = $scope.testObject.author + " " + object.ClinicalDocument.author.assignedAuthor.assignedPerson.name.given[0];
 				}
 			}
 			else{
@@ -162,6 +173,7 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 		}
 		catch(e){
 			console.log(e);
+			$scope.errorCDA = true;
 		}
 		
 	}
