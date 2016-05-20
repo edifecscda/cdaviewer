@@ -98,7 +98,7 @@
                     </div>-->
                     <div class="content-wrapper">
 	                    <h5>{{item.text}}</h5>
-	                    <h5 ng-hide="item.content[0].content">{{item.content}}</h5>
+	                    <h5 ng-hide="item.content[0].content || item.content[0]">{{item.content}}</h5>
 	                    <!-- <ul>
 	                    	<li class="paragraph-label" ng-repeat="content in item.content"><span>{{content}}</span></li>
                         </ul>-->
@@ -123,8 +123,11 @@
 	                    		</thead>
 	                    		<tbody>
 	                    			<tr ng-repeat="tr in table.tbody.tr">
-	                    				<td valign="top" style="width:25%; padding:5px;" ng-repeat="td in tr.td">
+	                    				<td colspan="{{td.colspan}}" valign="top" style="width:25%; padding:5px;" ng-repeat="td in tr.td">
 	                    					<span>{{td.text}}</span>
+	                    					<span ng-show="td.paragraph">
+	                    						<span ng-repeat="paragraph in td.paragraph">{{paragraph.text}}<br></span>	
+	                    					</span>
 	                    					<span ng-show="td.link"><a  href="{{td.link.href}}">{{td.link.content}}</a></span>
 	                    					<ul ng-repeat="listitem in td.list">
 	                    						<li class="header" ng-show="listitem.caption !='' && (listitem.table !='' || listitem.content !='') ">{{listitem.caption}}</li>
@@ -142,7 +145,7 @@
 		                    									</thead>
 		                    									<tbody>
 			                    									<tr ng-repeat="tr in tableitem.tbody.tr">
-			                    										<td style="padding:5px;" ng-repeat="td in tr.td">
+			                    										<td style="padding:5px;" ng-repeat="td in tr.td" colspan="{{td.colspan}}">
 			                    											<span>{{td.text}}</span>
 			                    										</td>
 			                    									</tr>

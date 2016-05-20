@@ -258,6 +258,16 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 						{
 							listObject['listitem'].push($scope.replaceCaret(section.text.list.item[i].content));
 						}
+						else if (section.text.list.item[i].length && !(typeof section.text.list.item[i]==="string" || section.text.list.item[i] instanceof String))
+						{
+							// there could be several 'content' elements in 'item'
+							var contentItem = "";
+							for (var j = 0; j< section.text.list.item[i].length; j++){
+								contentItem = contentItem + " " + $scope.replaceCaret(section.text.list.item[i][j]);
+							}
+							
+							listObject['listitem'].push(contentItem);
+						}
 						else
 						{
 							listObject['listitem'].push($scope.replaceCaret(section.text.list.item[i]));
@@ -318,18 +328,20 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 				}
 			} 
 			else{
-				//there is many paragraphs  - usually their number equals to number of other elements
-				for(var i = 0; i < section.text.paragraph.length; i++){
-					//item['paragraph'].push(section.text.paragraph[i]);
-					if (typeof item['list'] !="undefined"){
-						item['list'][i]['paragraph'] = section.text.paragraph[i];
-					}
-					if (typeof item['table'] !="undefined"){
-						item['table'][i]['paragraph'] = section.text.paragraph[i];
+				//there is many paragraphs  - usually their number equals to number of other elements. If not we skip paragraph section at all.
+				if ((typeof item['list'] !="undefined" &&   section.text.paragraph.length == item['list'].length) || (typeof item['table'] !="undefined" &&   section.text.paragraph.length == item['table'].length) ){
+					for(var i = 0; i < section.text.paragraph.length; i++){
+						//item['paragraph'].push(section.text.paragraph[i]);
+						if (typeof item['list'] !="undefined"){ // length of the paragraphs are equal to items
+							item['list'][i]['paragraph'] = section.text.paragraph[i];
+						}
+						if (typeof item['table'] !="undefined"){
+							item['table'][i]['paragraph'] = section.text.paragraph[i];
+						}
 					}
 				}
 			}
-			
+
 			found = true;
 		}
 		
@@ -379,21 +391,51 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 						else{
 							td.push({'text':item.thead.tr.th.content,'colspan':1 });
 						}
-				}
-				else {
-					for (var i = 0; i< item.thead.tr.th.length; i++){
-						if (typeof item.thead.tr.th[i] === 'string' || item.thead.tr.th[i] instanceof String){ // there can be a simple string
-							td.push({'text':item.thead.tr.th[i],'colspan':1 });
-						}
-						else{
-							if (item.thead.tr.th[i].colspan){
-								td.push({'text':item.thead.tr.th[i].content,'colspan':item.thead.tr.th[i].colspan });
+						
+						if (item.thead.tr.td){
+							if (item.thead.tr.td.colspan){
+								td.push({'text':item.thead.tr.td.content,'colspan':item.thead.tr.td.colspan });
 							}
 							else{
-								td.push({'text':item.thead.tr.th[i].content,'colspan':1 });
+								td.push({'text':item.thead.tr.td.content,'colspan':1 });
 							}
 						}
-						
+				}
+				else {
+					if (item.thead.tr.td){ // there could be td along with th in the tr 
+						for (var i = 0; i< item.thead.tr.th.length; i++){
+							if (typeof item.thead.tr.th[i] === 'string' || item.thead.tr.th[i] instanceof String){ // there can be a simple string
+								td.push({'text':item.thead.tr.th[i],'colspan':1 });
+								td.push({'text':item.thead.tr.td[i],'colspan':1 });
+							}
+							else{
+								if (item.thead.tr.th[i].colspan){
+									td.push({'text':item.thead.tr.th[i].content,'colspan':item.thead.tr.th[i].colspan });
+									td.push({'text':item.thead.tr.td[i].content,'colspan':item.thead.tr.td[i].colspan });
+								}
+								else{
+									td.push({'text':item.thead.tr.th[i].content,'colspan':1 });
+									td.push({'text':item.thead.tr.td[i].content,'colspan':1 });
+								}
+							}
+							
+						}
+					}
+					else{
+						for (var i = 0; i< item.thead.tr.th.length; i++){
+							if (typeof item.thead.tr.th[i] === 'string' || item.thead.tr.th[i] instanceof String){ // there can be a simple string
+								td.push({'text':item.thead.tr.th[i],'colspan':1 });
+							}
+							else{
+								if (item.thead.tr.th[i].colspan){
+									td.push({'text':item.thead.tr.th[i].content,'colspan':item.thead.tr.th[i].colspan });
+								}
+								else{
+									td.push({'text':item.thead.tr.th[i].content,'colspan':1 });
+								}
+							}
+							
+						}
 					}
 				}
 			
@@ -663,12 +705,42 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 			}
 			// there can be a complex object
 			else if (TRitem.td.content){
+				if (TRitem.td.content.length && !(typeof TRitem.td.content === 'string' || TRitem.td.content instanceof String )){
+					var tdContent = [];
+					for (var i = 0; i< TRitem.td.content.length; i++){
+						tdContent.push({"id":i, "text":$scope.replaceCaret(TRitem.td.content[i])});
+					}
+					
+					if (TRitem.td.colspan){
+						td.push({'paragraph':tdContent, 'colspan': TRitem.td.colspan}); 
+					}
+					else
+					{
+						td.push({'paragraph':tdContent, 'colspan':1});
+					}
+				}
+				else{
+					if (TRitem.td.colspan){
+						td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content , 'colspan': TRitem.td.colspan}); // here is the crutch - parsing of the object returns content.content for <content>sdsd</content>
+					}
+					else
+					{
+						td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content, 'colspan':1});
+					}
+				}
+			}
+			else if (TRitem.td.paragraph){ // there could be <paragraph> inside TD 
+				var tdContent = [];
+				for (var i = 0; i< TRitem.td.paragraph.length; i++){
+					tdContent.push({"id":i, "text":TRitem.td.paragraph[i]});
+				}
+				
 				if (TRitem.td.colspan){
-					td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content , 'colspan': TRitem.td.colspan}); // here is the crutch - parsing of the object returns content.content for <content>sdsd</content>
+					td.push({'paragraph':tdContent, 'colspan': TRitem.td.colspan}); 
 				}
 				else
 				{
-					td.push({'text':typeof TRitem.td.content.content === "undefined" ?TRitem.td.content:TRitem.td.content.content, 'colspan':1});
+					td.push({'paragraph':tdContent, 'colspan':1});
 				}
 			}
 			else
@@ -761,7 +833,10 @@ cdaApp.controller('ViewCDAController', function($scope, $http, $sce, FileUploade
 	
 	
 	$scope.replaceCaret = function(caretString){
-		var returnString = caretString.replace(/&#13;/g, '\r\n');
+		if (!(typeof caretString === 'string' || caretString instanceof String)){
+			return caretString;
+		}
+		var returnString = caretString.replace(/&#13;/g, '\r\n').replace(/&#160;/g,' ');
 		return returnString;
 	}
 	
